@@ -2,19 +2,14 @@ package pl.brewers.supporter.brewerssupporter.model;
 
 import lombok.Builder;
 import lombok.Data;
-import lombok.Singular;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Data
@@ -26,12 +21,19 @@ public class Batch {
     private ZonedDateTime brewingDate;
     private int fermentationTime;
     private String notes;
-    private BigDecimal alcoholByVolume;
+    private BigDecimal alcoholByVolume = calculateAlcohol();
+
+    private BigDecimal calculateAlcohol() {
+        assert finalGravity != null;
+        assert originalGravity != null;
+        return originalGravity.add(finalGravity).divide(BigDecimal.valueOf(2));
+    }
+
     private BigDecimal originalGravity;
     private BigDecimal finalGravity;
     private BigDecimal gravityBeforeBoiling;
     private BigDecimal attenuation;
-    private int amountBeforeBoiling;
+    private BigDecimal amountBeforeBoiling;
 
     @ManyToOne
     private Recipe recipe;

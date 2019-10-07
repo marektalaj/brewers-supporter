@@ -40,6 +40,10 @@ public class Recipe {
     @OneToMany(mappedBy = "recipe")
     private final List<HoopingIngredient> hoopingIngredients = new ArrayList<>();
 
+    @Singular
+    @OneToMany(mappedBy = "recipe")
+    private final List<AdditionalIngredient> additionalIngredients = new ArrayList<>();
+
     @OneToOne
     private YeastAsIngredient yeast;
 
