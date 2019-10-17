@@ -28,4 +28,9 @@ public class RecipeController {
     public Recipe getRecipeById(@PathVariable String id){
         return recipeService.getRecipeById(Long.parseLong(id));
     }
+
+    @GetMapping("/recipe")
+    public String getRecipeById(){
+        return "hello";
+    }
 }
