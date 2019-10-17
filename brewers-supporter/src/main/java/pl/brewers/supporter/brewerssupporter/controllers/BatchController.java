@@ -1,6 +1,7 @@
 package pl.brewers.supporter.brewerssupporter.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,8 +16,9 @@ public class BatchController {
 
     @PostMapping(value = "/batch/{recipeId}/{authorId}")
     public Batch saveRecipe(@RequestBody BrewingParamsDTO brewingParamsDTO,
-                            Long recipeId,
-                            Long authorId){
+                            @PathVariable Long recipeId,
+                            @PathVariable Long authorId){
+        System.out.println(recipeId+"   "+ authorId);
         return batchService.transformRecipe(brewingParamsDTO, recipeId, authorId);
     }
 

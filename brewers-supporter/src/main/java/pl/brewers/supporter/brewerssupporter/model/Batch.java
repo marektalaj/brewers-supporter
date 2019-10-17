@@ -24,9 +24,10 @@ public class Batch {
     private BigDecimal alcoholByVolume = calculateAlcohol();
 
     private BigDecimal calculateAlcohol() {
-        assert finalGravity != null;
-        assert originalGravity != null;
-        return originalGravity.add(finalGravity).divide(BigDecimal.valueOf(2));
+        if(finalGravity != null && originalGravity!= null) {
+            return originalGravity.add(finalGravity).divide(BigDecimal.valueOf(2));
+        }
+        return null;
     }
 
     private BigDecimal originalGravity;
