@@ -1,33 +1,32 @@
 package pl.brewers.supporter.brewerssupporter.services;
 import java.util.ArrayList;
 
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.brewers.supporter.brewerssupporter.dto.UserDTO;
-import pl.brewers.supporter.brewerssupporter.model.DAOUser;
-import pl.brewers.supporter.brewerssupporter.repositories.UserDao;
+import pl.brewers.supporter.brewerssupporter.model.User;
+import pl.brewers.supporter.brewerssupporter.repositories.UserRepository;
 
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
 
-    private final UserDao userDao;
+    private final UserRepository userRepository;
 
     private final PasswordEncoder bcryptEncoder;
 
-    public JwtUserDetailsService(UserDao userDao, PasswordEncoder bcryptEncoder) {
-        this.userDao = userDao;
+    public JwtUserDetailsService(UserRepository userRepository, PasswordEncoder bcryptEncoder) {
+        this.userRepository = userRepository;
         this.bcryptEncoder = bcryptEncoder;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        DAOUser user = userDao.findByUsername(username);
+        User user = userRepository.findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException("User not found with username: " + username);
         }
@@ -35,11 +34,11 @@ public class JwtUserDetailsService implements UserDetailsService {
                 new ArrayList<>());
     }
 
-    public DAOUser save(UserDTO user) {
-        DAOUser newUser = new DAOUser();
+    public User save(UserDTO user) {
+        User newUser = new User();
         newUser.setUsername(user.getUsername());
         newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
-        return userDao.save(newUser);
+        return userRepository.save(newUser);
     }
 
 }

@@ -45,4 +45,8 @@ export class AuthenticationService {
   logOut() {
     sessionStorage.removeItem('username')
   }
+
+  register(user: User){
+    return this.httpClient.post('http://localhost:8080/register', user)
+  }
 }
