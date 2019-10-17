@@ -1,4 +1,11 @@
 package pl.brewers.supporter.brewerssupporter.repositories;
 
-public class UserDao {
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+import pl.brewers.supporter.brewerssupporter.model.DAOUser;
+
+
+@Repository
+public interface UserDao extends CrudRepository<DAOUser, Integer> {
+    DAOUser findByUsername(String username);
 }
