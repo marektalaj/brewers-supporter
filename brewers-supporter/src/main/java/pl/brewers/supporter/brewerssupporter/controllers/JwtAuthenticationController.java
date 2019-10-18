@@ -36,6 +36,11 @@ public class JwtAuthenticationController {
         return ResponseEntity.ok(userDetailsService.save(user));
     }
 
+    @RequestMapping(value = "/exists/{username}", method = RequestMethod.GET)
+    public boolean checkIfExists(@PathVariable String userName) throws Exception {
+        return userDetailsService.checkIfUserExists(userName);
+    }
+
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 
