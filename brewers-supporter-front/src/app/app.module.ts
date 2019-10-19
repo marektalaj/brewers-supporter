@@ -12,6 +12,11 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BasicAuthHtppInterceptorService } from './service/basic-auth-http-interceptor.service';
 import { UserComponent } from './user/user.component';
 import { RegisterComponent } from './register/register.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { RefactometerComponent } from './calculators/refactometer/refactometer.component';
+import { EfficiencyComponent } from './calculators/efficiency/efficiency.component';
+import { AlcoholComponent } from './calculators/alcohol/alcohol.component';
+import { CorrectionComponent } from './calculators/correction/correction.component';
 
 
 @NgModule({
@@ -23,13 +28,18 @@ import { RegisterComponent } from './register/register.component';
     HomeComponent,
     UserComponent,
     RegisterComponent,
+    RefactometerComponent,
+    EfficiencyComponent,
+    AlcoholComponent,
+    CorrectionComponent,
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [
     {  

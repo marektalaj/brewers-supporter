@@ -1,0 +1,24 @@
+<div class="container">
+    <h1>Uzupełnij dane:</h1>
+    <form [formGroup]="calculateForm" (ngSubmit)="calculate()">
+      <div class="form-group">
+        <label for="name">Ilość brzeczki (L)</label>
+        <input type="number" formControlName="amount" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="alterEgo">Gęstość brzeczki (BLG)</label>
+        <input type="number" formControlName="gravity" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="alterEgo">Ilość słodów (KG)</label>
+        <input type="number" formControlName="maltAmount" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-success">Policz!</button>
+
+    </form>
+
+    <div *ngIf="result != 0.0">
+        <label for="alterEgo">Wydajność Twojej warzelni:</label>
+        <p>{{result}} %</p>
+    </div>
+</div>

@@ -10,13 +10,13 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  invalidLogin = false
+  invalidLogin = false;
   loading = false;
   submitted = false;
 
   constructor(private router: Router,
-    private loginservice: AuthenticationService,
-    private formBuilder: FormBuilder) { }
+              private loginservice: AuthenticationService,
+              private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -31,17 +31,17 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
 
         // stop here if form is invalid
-        if (this.loginForm.invalid) {
+    if (this.loginForm.invalid) {
             return;
         }
-    
+
     (this.loginservice.authenticate(this.f.username.value, this.f.password.value).subscribe(
       data => {
         this.router.navigate(['user'])
-        this.invalidLogin = false
+        this.invalidLogin = false;
       },
       error => {
-        this.invalidLogin = true
+        this.invalidLogin = true;
 
       }
     )

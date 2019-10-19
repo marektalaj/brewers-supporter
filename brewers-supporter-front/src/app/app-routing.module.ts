@@ -1,3 +1,7 @@
+import { AlcoholComponent } from './calculators/alcohol/alcohol.component';
+import { CorrectionComponent } from './calculators/correction/correction.component';
+import { EfficiencyComponent } from './calculators/efficiency/efficiency.component';
+import { RefactometerComponent } from './calculators/refactometer/refactometer.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
@@ -14,7 +18,11 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'user', component: UserComponent, canActivate: [AuthGuardService]},
-  { path: 'register', component: RegisterComponent}
+  { path: 'register', component: RegisterComponent},
+  { path: 'calculator/refactometer', component: RefactometerComponent},
+  { path: 'calculator/efficiency', component: EfficiencyComponent},
+  { path: 'calculator/correction', component: CorrectionComponent},
+  { path: 'calculator/alcohol', component: AlcoholComponent},
 ];
 
 @NgModule({

@@ -3,13 +3,24 @@
     <div class="navbar-brand">BrewersSupporter</div>
     
     <ul class="navbar-nav">
-      <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/" class="nav-link">Home</a></li>
-      <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a></li>
-      <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link">LogOut</a></li>
-    
+      <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/" class="nav-link">Strona główna</a></li>
+      <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">Logowanie</a></li>
+      <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link">Wyloguj sie!</a></li>
+      <li><div class="col">
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-light" id="dropdownBasic1" ngbDropdownToggle>Kalkulatory</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button routerLink="/calculator/refactometer" ngbDropdownItem>Korekcja wskazań refaktometru</button>
+            <button routerLink="/calculator/alcohol" ngbDropdownItem>Zawartość alkoholu</button>
+            <button routerLink="/calculator/efficiency" ngbDropdownItem>Wydajność zacierania</button>
+            <button routerLink="/calculator/correction" ngbDropdownItem>Rozcieńczanie/zagęszczanie brzeczki</button>
+          </div>
+        </div>
+      </div></li>
     
     </ul>
     
     </nav>
     
     </header>
+    
