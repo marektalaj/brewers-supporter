@@ -1,0 +1,31 @@
+<div class="container">
+    <h1>Uzupełnij dane:</h1>
+    <form [formGroup]="calculateForm" (ngSubmit)="calculate()">
+        <div class="form-group">
+            <label for="name">Ilość brzeczki (L)</label>
+            <input type="number" formControlName="amount" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="alterEgo">Zmierzona gęstość (BLG)</label>
+            <input type="number" formControlName="measured" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="alterEgo">Oczekiwana gęstość (BLG)</label>
+            <input type="number" formControlName="wanted" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-success">Policz!</button>
+
+    </form>
+
+    <div *ngIf="result != 0.0">
+        <div *ngIf="addWater;else other_content">
+            <label for="alterEgo">Dolej:</label>
+            <p>{{result}} L wody.</p>
+        </div>
+
+        <ng-template #other_content>
+            <label for="alterEgo">Dosyp:</label>
+            <p>{{result}} G białego cukru.</p>
+        </ng-template>
+    </div>
+</div>

@@ -13,6 +13,10 @@ import { BasicAuthHtppInterceptorService } from './service/basic-auth-http-inter
 import { UserComponent } from './user/user.component';
 import { RegisterComponent } from './register/register.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { RefactometerComponent } from './calculators/refactometer/refactometer.component';
+import { EfficiencyComponent } from './calculators/efficiency/efficiency.component';
+import { AlcoholComponent } from './calculators/alcohol/alcohol.component';
+import { CorrectionComponent } from './calculators/correction/correction.component';
 
 
 @NgModule({
@@ -24,6 +28,10 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     HomeComponent,
     UserComponent,
     RegisterComponent,
+    RefactometerComponent,
+    EfficiencyComponent,
+    AlcoholComponent,
+    CorrectionComponent,
   ],
   imports: [
     HttpClientModule,
