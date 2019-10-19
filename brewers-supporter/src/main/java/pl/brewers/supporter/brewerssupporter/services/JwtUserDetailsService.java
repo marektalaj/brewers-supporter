@@ -41,4 +41,8 @@ public class JwtUserDetailsService implements UserDetailsService {
         return userRepository.save(newUser);
     }
 
+    public boolean checkIfUserExists(String username){
+        return userRepository.existsByUsername(username);
+    }
+
 }
