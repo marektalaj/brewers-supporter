@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
         private formBuilder: FormBuilder,
         private router: Router,
         private registerservice: AuthenticationService,
-    ) { 
+    ) {
     }
 
     ngOnInit() {
@@ -39,8 +39,11 @@ export class RegisterComponent implements OnInit {
             return;
         }
 
-        this.loading = true;
-        this.registerservice.register(this.registerForm.value)
+        this.registerservice.existUser(this.registerForm.value.username)
+        .subscribe(
+            data =>{ if (data != true) {
+                this.loading = true;
+                this.registerservice.register(this.registerForm.value)
             .pipe(first())
             .subscribe(
                 data => {
@@ -49,5 +52,14 @@ export class RegisterComponent implements OnInit {
                 error => {
                     this.loading = false;
                 });
+            }else{
+                window.alert("uzytkownik istnieje");
+            }},
+            error => {
+                window.alert('wystapil blad');
+            }
+        );
+
+
     }
 }

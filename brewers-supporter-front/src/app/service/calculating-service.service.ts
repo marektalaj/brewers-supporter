@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CalculatingServiceService {
-const baseUrl='http://localhost:8080/calculator/';
+const baseUrl = 'http://localhost:8080/calculator/';
 
   constructor(private httpClient:HttpClient) { }
 

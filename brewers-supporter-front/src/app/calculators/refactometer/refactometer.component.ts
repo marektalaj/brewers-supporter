@@ -24,13 +24,14 @@ export class RefactometerComponent implements OnInit {
 
   get form() { return this.calculateForm.controls; }
 
-  calculate(){
-    console.log(this.form.originalGravity.value , this.form.finalGravity.value)
+  calculate() {
+    console.log(this.form.originalGravity.value , this.form.finalGravity.value);
     this.calcService.refactometerCorrection(this.form.originalGravity.value , this.form.finalGravity.value)
     .subscribe( data => {
-      console.log(data);
       this.result = data;
-    });
+    },
+    error => console.log(error)
+    );
 
   }
 

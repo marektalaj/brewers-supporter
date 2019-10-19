@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.brewers.supporter.brewerssupporter.dto.UserDTO;
+import pl.brewers.supporter.brewerssupporter.dto.AuthorDTO;
 import pl.brewers.supporter.brewerssupporter.model.User;
 import pl.brewers.supporter.brewerssupporter.repositories.UserRepository;
 
@@ -34,7 +34,7 @@ public class JwtUserDetailsService implements UserDetailsService {
                 new ArrayList<>());
     }
 
-    public User save(UserDTO user) {
+    public User save(AuthorDTO user) {
         User newUser = new User();
         newUser.setUsername(user.getUsername());
         newUser.setPassword(bcryptEncoder.encode(user.getPassword()));

@@ -28,7 +28,6 @@ export class AlcoholComponent implements OnInit {
       console.log(this.form.originalGravity.value , this.form.finalGravity.value)
       this.calcService.alcoholCalculation(this.form.originalGravity.value , this.form.finalGravity.value)
       .subscribe( data => {
-        console.log(data);
         this.result = data;
       });
 

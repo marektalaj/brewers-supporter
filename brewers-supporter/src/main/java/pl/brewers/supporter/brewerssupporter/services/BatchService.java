@@ -2,13 +2,13 @@ package pl.brewers.supporter.brewerssupporter.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.brewers.supporter.brewerssupporter.dtos.BrewingParamsDTO;
-import pl.brewers.supporter.brewerssupporter.model.Author;
+import pl.brewers.supporter.brewerssupporter.dto.BrewingParamsDTO;
+import pl.brewers.supporter.brewerssupporter.model.User;
 import pl.brewers.supporter.brewerssupporter.model.Batch;
 import pl.brewers.supporter.brewerssupporter.model.Recipe;
-import pl.brewers.supporter.brewerssupporter.repositories.AuthorRepository;
 import pl.brewers.supporter.brewerssupporter.repositories.BatchRepository;
 import pl.brewers.supporter.brewerssupporter.repositories.RecipeRepository;
+import pl.brewers.supporter.brewerssupporter.repositories.UserRepository;
 
 import java.time.ZonedDateTime;
 
@@ -17,11 +17,11 @@ import java.time.ZonedDateTime;
 public class BatchService {
     private final RecipeRepository recipeRepository;
     private final BatchRepository batchRepository;
-    private final AuthorRepository authorRepository;
+    private final UserRepository authorRepository;
 
     public Batch transformRecipe(BrewingParamsDTO brewingParams, Long recipeId, Long authorId) {
         Recipe recipe = recipeRepository.findById(recipeId).orElse(null);
-        Author author = authorRepository.findById(authorId).orElse(null);
+        User author = authorRepository.findById(authorId.intValue()).orElse(null);
 
         Batch newBatch = Batch.builder()
                 .gravityBeforeBoiling(brewingParams.getGravityBeforeBoiling())

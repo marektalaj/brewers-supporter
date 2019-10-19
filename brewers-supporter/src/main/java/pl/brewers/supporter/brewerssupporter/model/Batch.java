@@ -39,5 +39,5 @@ public class Batch {
     @ManyToOne
     private Recipe recipe;
     @ManyToOne
-    private Author author;
+    private User author;
 }

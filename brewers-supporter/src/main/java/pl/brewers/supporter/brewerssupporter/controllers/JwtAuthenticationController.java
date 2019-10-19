@@ -8,7 +8,7 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
-import pl.brewers.supporter.brewerssupporter.dto.UserDTO;
+import pl.brewers.supporter.brewerssupporter.dto.AuthorDTO;
 import pl.brewers.supporter.brewerssupporter.jwt.JwtRequest;
 import pl.brewers.supporter.brewerssupporter.jwt.JwtResponse;
 import pl.brewers.supporter.brewerssupporter.jwt.JwtTokenUtil;
@@ -32,13 +32,13 @@ public class JwtAuthenticationController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
+    public ResponseEntity<?> saveUser(@RequestBody AuthorDTO user) throws Exception {
         return ResponseEntity.ok(userDetailsService.save(user));
     }
 
     @RequestMapping(value = "/exists/{username}", method = RequestMethod.GET)
-    public boolean checkIfExists(@PathVariable String userName) throws Exception {
-        return userDetailsService.checkIfUserExists(userName);
+    public boolean checkIfExists(@PathVariable String username) throws Exception {
+        return userDetailsService.checkIfUserExists(username);
     }
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)

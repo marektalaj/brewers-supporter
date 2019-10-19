@@ -48,5 +48,5 @@ public class Recipe {
     private YeastAsIngredient yeast;
 
     @ManyToOne
-    private Author author;
+    private User author;
 }

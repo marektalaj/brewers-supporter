@@ -1,4 +1,4 @@
-package pl.brewers.supporter.brewerssupporter.dtos;
+package pl.brewers.supporter.brewerssupporter.dto;
 
 import lombok.Data;
 
