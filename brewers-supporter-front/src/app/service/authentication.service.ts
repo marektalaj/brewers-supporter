@@ -53,4 +53,8 @@ export class AuthenticationService {
   register(user: User){
     return this.httpClient.post('http://localhost:8080/register', user)
   }
+
+  userData(username){
+    return this.httpClient.get('http://localhost:8080/user/' + username);
+  }
 }
