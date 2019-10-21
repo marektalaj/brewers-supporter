@@ -8,7 +8,6 @@ import pl.brewers.supporter.brewerssupporter.model.HoopingIngredient;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.function.Function;
 
 @Service
 public class CalculatingService {
@@ -87,11 +86,7 @@ public class CalculatingService {
     private BigDecimal calculateHoopUsing(HoopingIngredient hoop, BigDecimal gravityConverted, BigDecimal amountConverted) {
         BigDecimal usedHoop = BigDecimal.valueOf(1.65).multiply(BigDecimal.valueOf(Math.pow(0.000125, gravityConverted.subtract(BigDecimal.valueOf(1)).doubleValue())))
                 .multiply(BigDecimal.valueOf(1).subtract(BigDecimal.valueOf(Math.exp(hoop.getTime() * (BigDecimal.valueOf(-0.04).doubleValue())))).divide(BigDecimal.valueOf(4.15), 3, RoundingMode.HALF_EVEN));
-        return usedHoop.multiply(hoop.getHoop().getAminokwasy().divide(BigDecimal.valueOf(100), 3, RoundingMode.HALF_EVEN)).multiply(hoop.getAmount()).multiply(BigDecimal.valueOf(1000).divide(amountConverted, 3, RoundingMode.HALF_EVEN));
-    }
-
-    private BigDecimal convertAmount(double amount) {
-        return BigDecimal.valueOf(amount).multiply(BigDecimal.valueOf(0.264179853644361));
+        return usedHoop.multiply(hoop.getHoop().getAlphaAcid().divide(BigDecimal.valueOf(100), 3, RoundingMode.HALF_EVEN)).multiply(hoop.getAmount()).multiply(BigDecimal.valueOf(1000).divide(amountConverted, 3, RoundingMode.HALF_EVEN));
     }
 
     private BigDecimal convertGravity(double gravity) {

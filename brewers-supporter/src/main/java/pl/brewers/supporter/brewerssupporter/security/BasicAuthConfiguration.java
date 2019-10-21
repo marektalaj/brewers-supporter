@@ -31,7 +31,7 @@ public class BasicAuthConfiguration extends WebSecurityConfigurerAdapter {
 
     private final JwtRequestFilter jwtRequestFilter;
 
-    public BasicAuthConfiguration(@Lazy JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint,@Lazy  UserDetailsService jwtUserDetailsService, @Lazy JwtRequestFilter jwtRequestFilter) {
+    public BasicAuthConfiguration(@Lazy JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint, @Lazy UserDetailsService jwtUserDetailsService, @Lazy JwtRequestFilter jwtRequestFilter) {
         this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
         this.jwtUserDetailsService = jwtUserDetailsService;
         this.jwtRequestFilter = jwtRequestFilter;
@@ -61,7 +61,7 @@ public class BasicAuthConfiguration extends WebSecurityConfigurerAdapter {
         // We don't need CSRF for this example
         httpSecurity.csrf().disable()
                 // dont authenticate this particular request
-                .authorizeRequests().antMatchers("/authenticate", "/register","/exists/*","/ingredients/*", "/calculator/*").
+                .authorizeRequests().antMatchers("/authenticate", "/register", "/exists/*", "/ingredients/*", "/calculator/*").
                 permitAll().antMatchers(HttpMethod.OPTIONS, "/**")
                 .permitAll().
                 // all other requests need to be authenticated
