@@ -9,11 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.ZonedDateTime;
 
 @Entity
 @Data
-@Builder
+@Builder(toBuilder = true)
 public class Batch {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +26,7 @@ public class Batch {
 
     private BigDecimal calculateAlcohol() {
         if(finalGravity != null && originalGravity!= null) {
-            return originalGravity.add(finalGravity).divide(BigDecimal.valueOf(2));
+            return originalGravity.add(finalGravity).divide(BigDecimal.valueOf(2),2, RoundingMode.HALF_EVEN);
         }
         return null;
     }
@@ -33,8 +34,9 @@ public class Batch {
     private BigDecimal originalGravity;
     private BigDecimal finalGravity;
     private BigDecimal gravityBeforeBoiling;
-    private BigDecimal attenuation;
     private BigDecimal amountBeforeBoiling;
+    private BigDecimal amountAfterBoiling;
+    private BigDecimal ibu;
 
     @ManyToOne
     private Recipe recipe;

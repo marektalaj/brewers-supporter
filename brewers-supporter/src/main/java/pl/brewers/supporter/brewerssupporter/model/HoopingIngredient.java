@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import java.math.BigDecimal;
 
 
 @Entity
@@ -19,7 +20,7 @@ public class HoopingIngredient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int time;
-    private int amount;
+    private BigDecimal amount;
     @ManyToOne
     private Recipe recipe;
     @ManyToOne

@@ -19,7 +19,7 @@ public class MaltingIngredient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int time;
-    private int amount;
+    private BigDecimal amount;
 
     @ManyToOne
     private Recipe recipe;

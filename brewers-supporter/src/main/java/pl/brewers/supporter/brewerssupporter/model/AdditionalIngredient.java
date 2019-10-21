@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import java.math.BigDecimal;
 
 @Entity
 @Data
@@ -18,7 +19,7 @@ public class AdditionalIngredient {
     private Long id;
     private String name;
     private IngredientType type;
-    private int amount;
+    private BigDecimal amount;
     private BrewingProcess usedTo;
     private int time;
     @ManyToOne
