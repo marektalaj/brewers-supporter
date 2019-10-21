@@ -6,11 +6,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.brewers.supporter.brewerssupporter.dto.AlcoholCalculationDTO;
-import pl.brewers.supporter.brewerssupporter.dto.MashEfficiencyDTO;
-import pl.brewers.supporter.brewerssupporter.dto.RefactometerCalculationDTO;
-import pl.brewers.supporter.brewerssupporter.dto.WortCorrectionDTO;
+import pl.brewers.supporter.brewerssupporter.dto.*;
 import pl.brewers.supporter.brewerssupporter.services.CalculatingService;
+import pl.brewers.supporter.brewerssupporter.services.HoopingDataRequestDTO;
 
 import java.math.BigDecimal;
 
@@ -40,5 +38,15 @@ public class CalculatingController {
     @PostMapping(value = "efficiency")
     public double mashEfficiency(@RequestBody MashEfficiencyDTO data) {
         return calculatingService.mashEfficiency(BigDecimal.valueOf(data.getAmount()), BigDecimal.valueOf(data.getGravity()), BigDecimal.valueOf(data.getMaltAmount()));
+    }
+
+    @PostMapping(value = "mash")
+    public MashDataResponseDTO mashData(@RequestBody MashDataRequestDTO data) {
+        return calculatingService.calculateMashData(data);
+    }
+
+    @PostMapping(value = "ibu")
+    public HoopingDataResponseDTO mashData(@RequestBody HoopingDataRequestDTO data) {
+        return calculatingService.calculateIBU(data);
     }
 }

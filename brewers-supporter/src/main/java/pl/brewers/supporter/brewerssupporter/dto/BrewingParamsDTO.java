@@ -9,7 +9,9 @@ public class BrewingParamsDTO {
     private BigDecimal gravityBeforeBoiling;
     private BigDecimal originalGravity;
     private BigDecimal amountBeforeBoiling;
+    private BigDecimal finalGravity;
     private BigDecimal amount;
+    private int fermentationTime;
     private String notes;
 
 }

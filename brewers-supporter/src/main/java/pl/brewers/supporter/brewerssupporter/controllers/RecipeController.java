@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.brewers.supporter.brewerssupporter.model.Recipe;
 import pl.brewers.supporter.brewerssupporter.services.RecipeService;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 public class RecipeController {
@@ -29,8 +31,9 @@ public class RecipeController {
         return recipeService.getRecipeById(Long.parseLong(id));
     }
 
-    @GetMapping("/recipe")
-    public String getRecipeById(){
-        return "hello";
+    @GetMapping("/recipes/{username}")
+    public List<Recipe> getRecipeByUsername(@PathVariable String username){
+        return  recipeService.getRecipeByUsername(username);
     }
+
 }

@@ -27,6 +27,6 @@ public class Malt {
     private String producer;
     private String country;
     private BigDecimal extraction;
-    private int ebc;
+    private BigDecimal ebc;
 
 }

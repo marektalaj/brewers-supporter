@@ -57,7 +57,7 @@ public class DataLoader implements ApplicationRunner {
                 .producer("viking malt")
                 .country("polska")
                 .extraction(BigDecimal.valueOf(extraction))
-                .ebc(10)
+                .ebc(BigDecimal.valueOf(10))
                 .build();
     }
 }
