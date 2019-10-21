@@ -1,5 +1,4 @@
 package pl.brewers.supporter.brewerssupporter.services;
-import java.util.ArrayList;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -9,6 +8,8 @@ import org.springframework.stereotype.Service;
 import pl.brewers.supporter.brewerssupporter.dto.AuthorDTO;
 import pl.brewers.supporter.brewerssupporter.model.User;
 import pl.brewers.supporter.brewerssupporter.repositories.UserRepository;
+
+import java.util.ArrayList;
 
 
 @Service
@@ -41,7 +42,7 @@ public class JwtUserDetailsService implements UserDetailsService {
         return userRepository.save(newUser);
     }
 
-    public boolean checkIfUserExists(String username){
+    public boolean checkIfUserExists(String username) {
         return userRepository.existsByUsername(username);
     }
 

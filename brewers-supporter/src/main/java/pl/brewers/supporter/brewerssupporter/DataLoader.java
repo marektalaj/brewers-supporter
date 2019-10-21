@@ -4,11 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
-import pl.brewers.supporter.brewerssupporter.model.Hoop;
-import pl.brewers.supporter.brewerssupporter.model.HoopType;
-import pl.brewers.supporter.brewerssupporter.model.Malt;
-import pl.brewers.supporter.brewerssupporter.model.Yeast;
-import pl.brewers.supporter.brewerssupporter.model.YeastType;
+import pl.brewers.supporter.brewerssupporter.model.*;
 import pl.brewers.supporter.brewerssupporter.repositories.HoopRepository;
 import pl.brewers.supporter.brewerssupporter.repositories.MaltRepository;
 import pl.brewers.supporter.brewerssupporter.repositories.YeastRepository;
@@ -24,12 +20,12 @@ public class DataLoader implements ApplicationRunner {
     private final YeastRepository yeastRepository;
 
     public void run(ApplicationArguments args) {
-        maltRepository.save(buildMalt("pszeniczny",80.00));
-        maltRepository.save(buildMalt("monachijski",85.00));
-        maltRepository.save(buildMalt("pale ale",90.00));
-        hoopRepository.save(buildHoop("iunga",12.00));
-        hoopRepository.save(buildHoop("lubelski",9.00));
-        hoopRepository.save(buildHoop("marynka",7.00));
+        maltRepository.save(buildMalt("pszeniczny", 80.00));
+        maltRepository.save(buildMalt("monachijski", 85.00));
+        maltRepository.save(buildMalt("pale ale", 90.00));
+        hoopRepository.save(buildHoop("iunga", 12.00));
+        hoopRepository.save(buildHoop("lubelski", 9.00));
+        hoopRepository.save(buildHoop("marynka", 7.00));
         yeastRepository.save(buildYeasts("S-04"));
         yeastRepository.save(buildYeasts("US-05"));
     }
@@ -47,7 +43,7 @@ public class DataLoader implements ApplicationRunner {
                 .name(name)
                 .country("polska")
                 .type(HoopType.AROMATYCZNY)
-                .aminokwasy(BigDecimal.valueOf(aminokwasy))
+                .alphaAcid(BigDecimal.valueOf(aminokwasy))
                 .build();
     }
 

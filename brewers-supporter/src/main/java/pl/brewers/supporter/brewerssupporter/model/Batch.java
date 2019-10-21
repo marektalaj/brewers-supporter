@@ -3,11 +3,7 @@ package pl.brewers.supporter.brewerssupporter.model;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.ZonedDateTime;
@@ -25,8 +21,8 @@ public class Batch {
     private BigDecimal alcoholByVolume = calculateAlcohol();
 
     private BigDecimal calculateAlcohol() {
-        if(finalGravity != null && originalGravity!= null) {
-            return originalGravity.add(finalGravity).divide(BigDecimal.valueOf(2),2, RoundingMode.HALF_EVEN);
+        if (finalGravity != null && originalGravity != null) {
+            return originalGravity.add(finalGravity).divide(BigDecimal.valueOf(2), 2, RoundingMode.HALF_EVEN);
         }
         return null;
     }

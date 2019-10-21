@@ -25,7 +25,7 @@ public class JwtAuthenticationController {
 
     private final JwtUserDetailsService userDetailsService;
 
-    public JwtAuthenticationController(@Lazy AuthenticationManager authenticationManager,@Lazy JwtTokenUtil jwtTokenUtil,@Lazy JwtUserDetailsService userDetailsService) {
+    public JwtAuthenticationController(@Lazy AuthenticationManager authenticationManager, @Lazy JwtTokenUtil jwtTokenUtil, @Lazy JwtUserDetailsService userDetailsService) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
         this.userDetailsService = userDetailsService;

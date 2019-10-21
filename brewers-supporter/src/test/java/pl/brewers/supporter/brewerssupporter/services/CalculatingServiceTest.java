@@ -25,11 +25,8 @@ public class CalculatingServiceTest {
 
     @Test
     public void checkIfCalculateRefactometerGravityCorrectly() {
-        Assert.assertTrue(BigDecimal.valueOf(3.45).doubleValue() < calculatingService.refactometerCorrection(BigDecimal.valueOf(16.0), BigDecimal.valueOf(8.0)));
-        Assert.assertTrue(BigDecimal.valueOf(3.58).doubleValue() > calculatingService.refactometerCorrection(BigDecimal.valueOf(16.0), BigDecimal.valueOf(8.0)));
-
-        Assert.assertTrue(BigDecimal.valueOf(3.45).doubleValue() < calculatingService.refactometerCorrection(BigDecimal.valueOf(13.0), BigDecimal.valueOf(7.0)));
-        Assert.assertTrue(BigDecimal.valueOf(3.55).doubleValue() > calculatingService.refactometerCorrection(BigDecimal.valueOf(13.0), BigDecimal.valueOf(7.0)));
+        Assert.assertEquals(BigDecimal.valueOf(3.5).doubleValue(), calculatingService.refactometerCorrection(BigDecimal.valueOf(13.00), BigDecimal.valueOf(7.0)), 0.1);
+        Assert.assertEquals(BigDecimal.valueOf(3.5).doubleValue(), calculatingService.refactometerCorrection(BigDecimal.valueOf(16.00), BigDecimal.valueOf(8.0)), 0.1);
     }
 
     @Test
@@ -53,7 +50,7 @@ public class CalculatingServiceTest {
         MashDataRequestDTO request = MashDataRequestDTO.builder()
                 .amount(24.2)
                 .maltingIngredients(List.of(
-                        buildMaltingIngredient(BigDecimal.valueOf(7),BigDecimal.valueOf(82.5),BigDecimal.valueOf(2.8))
+                        buildMaltingIngredient(BigDecimal.valueOf(7), BigDecimal.valueOf(82.5), BigDecimal.valueOf(2.8))
                         )
                 )
                 .build();
@@ -66,9 +63,9 @@ public class CalculatingServiceTest {
         MashDataRequestDTO request = MashDataRequestDTO.builder()
                 .amount(24.2)
                 .maltingIngredients(List.of(
-                            buildMaltingIngredient(BigDecimal.valueOf(4),BigDecimal.valueOf(82.5),BigDecimal.valueOf(2.8)),
-                            buildMaltingIngredient(BigDecimal.valueOf(0.32),BigDecimal.valueOf(81.6),BigDecimal.valueOf(6.25)),
-                            buildMaltingIngredient(BigDecimal.valueOf(2.15),BigDecimal.valueOf(82.6),BigDecimal.valueOf(4))
+                        buildMaltingIngredient(BigDecimal.valueOf(4), BigDecimal.valueOf(82.5), BigDecimal.valueOf(2.8)),
+                        buildMaltingIngredient(BigDecimal.valueOf(0.32), BigDecimal.valueOf(81.6), BigDecimal.valueOf(6.25)),
+                        buildMaltingIngredient(BigDecimal.valueOf(2.15), BigDecimal.valueOf(82.6), BigDecimal.valueOf(4))
                         )
                 )
                 .build();
@@ -77,7 +74,7 @@ public class CalculatingServiceTest {
     }
 
 
-    private MaltingIngredient buildMaltingIngredient (BigDecimal amount, BigDecimal extraction, BigDecimal ebc ){
+    private MaltingIngredient buildMaltingIngredient(BigDecimal amount, BigDecimal extraction, BigDecimal ebc) {
         return MaltingIngredient.builder()
                 .amount(amount)
                 .time(60)
@@ -96,9 +93,9 @@ public class CalculatingServiceTest {
                 .amount(20.0)
                 .gravity(14)
                 .hoopingIngredients(List.of(
-                        buildHoopingIngredient(BigDecimal.valueOf(15),60,BigDecimal.valueOf(10)),
-                        buildHoopingIngredient(BigDecimal.valueOf(10),50,BigDecimal.valueOf(3)),
-                        buildHoopingIngredient(BigDecimal.valueOf(20),5,BigDecimal.valueOf(3.5))
+                        buildHoopingIngredient(BigDecimal.valueOf(15), 60, BigDecimal.valueOf(10)),
+                        buildHoopingIngredient(BigDecimal.valueOf(10), 50, BigDecimal.valueOf(3)),
+                        buildHoopingIngredient(BigDecimal.valueOf(20), 5, BigDecimal.valueOf(3.5))
                         )
                 )
                 .build();
@@ -106,12 +103,12 @@ public class CalculatingServiceTest {
         Assert.assertEquals(response.getIbu(), calculatingService.calculateIBU(request).getIbu(), 0.2);
     }
 
-    private HoopingIngredient buildHoopingIngredient (BigDecimal amount, int time, BigDecimal aminokwasy){
+    private HoopingIngredient buildHoopingIngredient(BigDecimal amount, int time, BigDecimal alphaAcid) {
         return HoopingIngredient.builder()
                 .amount(amount)
                 .time(time)
                 .hoop(Hoop.builder()
-                        .aminokwasy(aminokwasy)
+                        .alphaAcid(alphaAcid)
                         .build())
                 .build();
 

@@ -25,17 +25,17 @@ public class IngredientsController {
 
 
     @GetMapping("/malts")
-    public List<Malt> getMalts(){
+    public List<Malt> getMalts() {
         return maltRepository.findAll();
     }
 
     @GetMapping("/hoops")
-    public List<Hoop> getHoops(){
+    public List<Hoop> getHoops() {
         return hoopRepository.findAll();
     }
 
     @GetMapping("/yeasts")
-    public List<Yeast> getYeasts(){
+    public List<Yeast> getYeasts() {
         return yeastRepository.findAll();
     }
 
