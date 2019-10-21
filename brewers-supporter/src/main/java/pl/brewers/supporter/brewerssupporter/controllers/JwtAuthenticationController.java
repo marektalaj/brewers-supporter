@@ -12,6 +12,7 @@ import pl.brewers.supporter.brewerssupporter.dto.AuthorDTO;
 import pl.brewers.supporter.brewerssupporter.jwt.JwtRequest;
 import pl.brewers.supporter.brewerssupporter.jwt.JwtResponse;
 import pl.brewers.supporter.brewerssupporter.jwt.JwtTokenUtil;
+import pl.brewers.supporter.brewerssupporter.model.User;
 import pl.brewers.supporter.brewerssupporter.services.JwtUserDetailsService;
 
 
@@ -39,6 +40,11 @@ public class JwtAuthenticationController {
     @RequestMapping(value = "/exists/{username}", method = RequestMethod.GET)
     public boolean checkIfExists(@PathVariable String username) throws Exception {
         return userDetailsService.checkIfUserExists(username);
+    }
+
+    @RequestMapping(value = "/user/{username}", method = RequestMethod.GET)
+    public User getUserDataByUsername(@PathVariable String username) throws Exception {
+        return userDetailsService.getUserByUsername(username);
     }
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)

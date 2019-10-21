@@ -9,24 +9,26 @@ import pl.brewers.supporter.brewerssupporter.services.BatchService;
 import java.util.List;
 
 @RestController
+@RequestMapping("/batches")
+@CrossOrigin
 @RequiredArgsConstructor
 public class BatchController {
     private final BatchService batchService;
 
-    @PostMapping(value = "/batch/{recipeId}/{username}")
+    @PostMapping(value = "/{recipeId}/{username}")
     public Batch saveBatch(@RequestBody BrewingParamsDTO brewingParamsDTO,
                            @PathVariable Long recipeId,
                            @PathVariable String username) {
         return batchService.transformRecipe(brewingParamsDTO, recipeId, username);
     }
 
-    @PutMapping(value = "batch/{batchId}")
+    @PutMapping(value = "/{batchId}")
     public Batch updateBatch(@RequestBody BrewingParamsDTO brewingParamsDTO,
                              @PathVariable Long batchId) {
         return batchService.updateBatch(brewingParamsDTO, batchId);
     }
 
-    @GetMapping("/batches/{username}")
+    @GetMapping("/{username}")
     public List<Batch> getRecipeByUsername(@PathVariable String username) {
         return batchService.getRecipeByUsername(username);
     }

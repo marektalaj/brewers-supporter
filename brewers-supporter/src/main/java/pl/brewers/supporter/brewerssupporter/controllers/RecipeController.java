@@ -8,26 +8,28 @@ import pl.brewers.supporter.brewerssupporter.services.RecipeService;
 import java.util.List;
 
 @RestController
+@CrossOrigin
+@RequestMapping("/recipe")
 @RequiredArgsConstructor
 public class RecipeController {
     private final RecipeService recipeService;
 
-    @PostMapping(value = "/recipe")
+    @PostMapping
     public Recipe saveRecipe(@RequestBody Recipe recipe) {
         return recipeService.saveRecipe(recipe);
     }
 
-    @PutMapping(value = "/recipe")
+    @PutMapping
     public Recipe updateRecipe(@RequestBody Recipe recipe) {
         return recipeService.saveRecipe(recipe);
     }
 
-    @GetMapping("/recipe/{id}")
+    @GetMapping("/{id}")
     public Recipe getRecipeById(@PathVariable String id) {
         return recipeService.getRecipeById(Long.parseLong(id));
     }
 
-    @GetMapping("/recipes/{username}")
+    @GetMapping("/{username}")
     public List<Recipe> getRecipeByUsername(@PathVariable String username) {
         return recipeService.getRecipeByUsername(username);
     }
