@@ -1,0 +1,12 @@
+<ng-select [items]="malts | async"
+           bindLabel="type"
+           autofocus
+           [(ngModel)]="malt">
+        
+</ng-select>
+
+
+
+
+<br/>Selected: {{malt.type}}
+

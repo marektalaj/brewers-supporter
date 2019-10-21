@@ -1,5 +1,5 @@
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { CalculatingServiceService } from './../../service/calculating-service.service';
+import { CalculatingService } from './../../service/calculating-service.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -12,7 +12,7 @@ export class RefactometerComponent implements OnInit {
   calculateForm: FormGroup;
   result = 0.0;
 
-  constructor(private calcService: CalculatingServiceService,
+  constructor(private calcService: CalculatingService,
               private formBuilder: FormBuilder) { }
 
   ngOnInit() {

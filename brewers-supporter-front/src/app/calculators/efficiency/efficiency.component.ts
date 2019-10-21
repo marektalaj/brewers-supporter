@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { CalculatingServiceService } from 'src/app/service/calculating-service.service';
+import { CalculatingService } from 'src/app/service/calculating-service.service';
 
 @Component({
   selector: 'app-efficiency',
@@ -12,7 +12,7 @@ export class EfficiencyComponent implements OnInit {
   calculateForm: FormGroup;
   result = 0.0;
 
-  constructor(private calcService: CalculatingServiceService,
+  constructor(private calcService: CalculatingService,
               private formBuilder: FormBuilder) { }
 
   ngOnInit() {

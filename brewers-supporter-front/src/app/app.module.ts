@@ -8,15 +8,16 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BasicAuthHtppInterceptorService } from './service/basic-auth-http-interceptor.service';
-import { UserComponent } from './user/user.component';
 import { RegisterComponent } from './register/register.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { RefactometerComponent } from './calculators/refactometer/refactometer.component';
 import { EfficiencyComponent } from './calculators/efficiency/efficiency.component';
 import { AlcoholComponent } from './calculators/alcohol/alcohol.component';
 import { CorrectionComponent } from './calculators/correction/correction.component';
+import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
 
 
 @NgModule({
@@ -26,15 +27,16 @@ import { CorrectionComponent } from './calculators/correction/correction.compone
     LogoutComponent,
     HeaderComponent,
     HomeComponent,
-    UserComponent,
     RegisterComponent,
     RefactometerComponent,
     EfficiencyComponent,
     AlcoholComponent,
     CorrectionComponent,
+    AddRecipeComponent,
   ],
   imports: [
     HttpClientModule,
+    NgSelectModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CalculatingServiceService } from 'src/app/service/calculating-service.service';
+import { CalculatingService } from 'src/app/service/calculating-service.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -12,7 +12,7 @@ export class CorrectionComponent implements OnInit {
   result = 0.0;
   addWater = true;
 
-  constructor(private calcService: CalculatingServiceService,
+  constructor(private calcService: CalculatingService,
               private formBuilder: FormBuilder) { }
 
   ngOnInit() {

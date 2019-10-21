@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { CalculatingServiceService } from 'src/app/service/calculating-service.service';
+import { CalculatingService } from 'src/app/service/calculating-service.service';
 
 @Component({
   selector: 'app-alcohol',
@@ -12,7 +12,7 @@ export class AlcoholComponent implements OnInit {
   calculateForm: FormGroup;
   result = 0.0;
 
-  constructor(private calcService: CalculatingServiceService,
+  constructor(private calcService: CalculatingService,
               private formBuilder: FormBuilder) { }
 
     ngOnInit() {
