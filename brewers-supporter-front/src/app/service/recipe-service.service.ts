@@ -5,24 +5,24 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class RecipeServiceService {
+export class RecipeService {
   baseUrl: string = 'http://localhost:8080/recipe';
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
-  saveRecipe(recipe: Recipe){
-    return this.httpClient.post<Recipe>(this.baseUrl, recipe );
+  saveRecipe(recipe: Recipe, username) {
+    return this.httpClient.post<Recipe>(this.baseUrl + '/' + username, recipe);
   }
 
-  updateRecipe(recipe: Recipe){
-    return this.httpClient.put<Recipe>(this.baseUrl, recipe );
+  updateRecipe(recipe: Recipe) {
+    return this.httpClient.put<Recipe>(this.baseUrl, recipe);
   }
 
-  getRecipeById(id){
-    return this.httpClient.get<Recipe>(this.baseUrl+'/'+id)
+  getRecipeById(id) {
+    return this.httpClient.get<Recipe>(this.baseUrl + '/id/' + id)
   }
 
-  getRecipeByUsername(username){
-    return this.httpClient.get<Recipe[]>(this.baseUrl+'/'+username)
+  getRecipeByUsername(username) {
+    return this.httpClient.get<Recipe[]>(this.baseUrl + '/username/' + username)
   }
 }

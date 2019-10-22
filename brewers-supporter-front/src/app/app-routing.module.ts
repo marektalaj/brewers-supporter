@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuardService } from './service/auth-guard.service';
 import { RegisterComponent } from './register/register.component';
 import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
+import { RecipesComponent } from './recipes/recipes/recipes.component';
 
 
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'register', component: RegisterComponent},
+  { path: 'recipes', component: RecipesComponent},
   { path: 'recipes/add', component: AddRecipeComponent},
   { path: 'calculator/refactometer', component: RefactometerComponent},
   { path: 'calculator/efficiency', component: EfficiencyComponent},

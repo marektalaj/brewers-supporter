@@ -4,5 +4,4 @@ export class AdditionalIngredient{
     type: string;
     amount: number;
     usedTo: string;
-    time: number;
 }

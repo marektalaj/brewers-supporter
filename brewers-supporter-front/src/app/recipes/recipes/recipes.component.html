@@ -1,0 +1,18 @@
+<table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Nazwa przepisu</th>
+                <th>Ilość (l)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let recipe of recipes; let i = index">
+                <td>
+                    {{recipe.name}}
+                </td>
+                <td>
+                    {{recipe.amount}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
