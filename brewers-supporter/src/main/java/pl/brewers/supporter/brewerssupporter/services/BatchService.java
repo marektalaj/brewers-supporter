@@ -3,6 +3,7 @@ package pl.brewers.supporter.brewerssupporter.services;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.brewers.supporter.brewerssupporter.dto.BrewingParamsDTO;
+import pl.brewers.supporter.brewerssupporter.dto.HoopingDataRequestDTO;
 import pl.brewers.supporter.brewerssupporter.model.Batch;
 import pl.brewers.supporter.brewerssupporter.model.Recipe;
 import pl.brewers.supporter.brewerssupporter.model.User;

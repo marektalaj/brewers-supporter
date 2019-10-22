@@ -13,8 +13,14 @@ import java.util.List;
 public class RecipeService {
     private final RecipeRepository recipeRepository;
     private final UserRepository userRepository;
+    private final JwtUserDetailsService userService;
 
-    public Recipe saveRecipe(Recipe recipe) {
+    public Recipe saveRecipe(Recipe recipe, String username) {
+        recipe.setAuthor(userService.getUserByUsername(username));
+        return recipeRepository.save(recipe);
+    }
+
+    public Recipe update(Recipe recipe) {
         return recipeRepository.save(recipe);
     }
 
@@ -25,6 +31,5 @@ public class RecipeService {
     public List<Recipe> getRecipeByUsername(String username) {
         return recipeRepository.findByAuthor(userRepository.findByUsername(username));
     }
-
 
 }

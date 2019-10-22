@@ -1,7 +1,7 @@
 package pl.brewers.supporter.brewerssupporter.model;
 
-import lombok.Builder;
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -11,6 +11,8 @@ import java.time.ZonedDateTime;
 @Entity
 @Data
 @Builder(toBuilder = true)
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 public class Batch {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,8 +36,11 @@ public class Batch {
     private BigDecimal amountAfterBoiling;
     private BigDecimal ibu;
 
+    @JsonIgnore
     @ManyToOne
     private Recipe recipe;
+    @JsonIgnore
     @ManyToOne
     private User author;
+
 }

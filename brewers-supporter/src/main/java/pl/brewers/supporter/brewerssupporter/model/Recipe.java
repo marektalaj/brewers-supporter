@@ -1,5 +1,6 @@
 package pl.brewers.supporter.brewerssupporter.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,20 +25,22 @@ public class Recipe {
     private ZonedDateTime lastEditDateTime;
 
     @Singular
-    @OneToMany(mappedBy = "recipe")
+    @OneToMany(cascade = CascadeType.ALL)
     private final List<MaltingIngredient> maltingIngredients = new ArrayList<>();
 
     @Singular
-    @OneToMany(mappedBy = "recipe")
+    @OneToMany(cascade = CascadeType.ALL)
     private final List<HoopingIngredient> hoopingIngredients = new ArrayList<>();
 
     @Singular
-    @OneToMany(mappedBy = "recipe")
+    @OneToMany(cascade = CascadeType.ALL)
     private final List<AdditionalIngredient> additionalIngredients = new ArrayList<>();
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private YeastAsIngredient yeast;
 
+    @JsonIgnore
+    @ToString.Exclude
     @ManyToOne
     private User author;
 }

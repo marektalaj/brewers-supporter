@@ -1,9 +1,6 @@
 package pl.brewers.supporter.brewerssupporter.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -22,7 +19,6 @@ public class User {
     private String email;
     private String username;
     private String password;
-
     @OneToMany(mappedBy = "author")
     private List<Recipe> recipes;
     @OneToMany(mappedBy = "author")

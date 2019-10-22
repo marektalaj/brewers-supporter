@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import pl.brewers.supporter.brewerssupporter.dto.HoopingDataRequestDTO;
 import pl.brewers.supporter.brewerssupporter.dto.HoopingDataResponseDTO;
 import pl.brewers.supporter.brewerssupporter.dto.MashDataRequestDTO;
 import pl.brewers.supporter.brewerssupporter.dto.MashDataResponseDTO;

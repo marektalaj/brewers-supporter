@@ -14,22 +14,22 @@ import java.util.List;
 public class RecipeController {
     private final RecipeService recipeService;
 
-    @PostMapping
-    public Recipe saveRecipe(@RequestBody Recipe recipe) {
-        return recipeService.saveRecipe(recipe);
+    @PostMapping("/{username}")
+    public Recipe saveRecipe(@RequestBody Recipe recipe, @PathVariable String username) {
+        return recipeService.saveRecipe(recipe, username);
     }
 
     @PutMapping
     public Recipe updateRecipe(@RequestBody Recipe recipe) {
-        return recipeService.saveRecipe(recipe);
+        return recipeService.update(recipe);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public Recipe getRecipeById(@PathVariable String id) {
         return recipeService.getRecipeById(Long.parseLong(id));
     }
 
-    @GetMapping("/{username}")
+    @GetMapping("/username/{username}")
     public List<Recipe> getRecipeByUsername(@PathVariable String username) {
         return recipeService.getRecipeByUsername(username);
     }

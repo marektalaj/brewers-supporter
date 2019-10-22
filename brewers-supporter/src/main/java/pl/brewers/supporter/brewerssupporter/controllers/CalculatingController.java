@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import pl.brewers.supporter.brewerssupporter.dto.*;
 import pl.brewers.supporter.brewerssupporter.services.CalculatingService;
-import pl.brewers.supporter.brewerssupporter.services.HoopingDataRequestDTO;
+import pl.brewers.supporter.brewerssupporter.dto.HoopingDataRequestDTO;
 
 import java.math.BigDecimal;
 
