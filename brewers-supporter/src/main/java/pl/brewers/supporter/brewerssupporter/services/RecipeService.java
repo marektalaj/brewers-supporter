@@ -2,6 +2,8 @@ package pl.brewers.supporter.brewerssupporter.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import pl.brewers.supporter.brewerssupporter.dto.HoopingDataRequestDTO;
+import pl.brewers.supporter.brewerssupporter.dto.MashDataRequestDTO;
 import pl.brewers.supporter.brewerssupporter.model.Recipe;
 import pl.brewers.supporter.brewerssupporter.repositories.RecipeRepository;
 import pl.brewers.supporter.brewerssupporter.repositories.UserRepository;
@@ -14,9 +16,12 @@ public class RecipeService {
     private final RecipeRepository recipeRepository;
     private final UserRepository userRepository;
     private final JwtUserDetailsService userService;
+    private final CalculatingService calculatingService;
 
     public Recipe saveRecipe(Recipe recipe, String username) {
         recipe.setAuthor(userService.getUserByUsername(username));
+        recipe.setOriginalGravity(calculatingService.calculateMashData(MashDataRequestDTO.builder().amount(recipe.getAmount()).maltingIngredients(recipe.getMaltingIngredients()).build()).getGravity());
+        recipe.setIbu(calculatingService.calculateIBU(HoopingDataRequestDTO.builder().amount(recipe.getAmount()).gravity(recipe.getOriginalGravity()).hoopingIngredients(recipe.getHoopingIngredients()).build()).getIbu());
         return recipeRepository.save(recipe);
     }
 

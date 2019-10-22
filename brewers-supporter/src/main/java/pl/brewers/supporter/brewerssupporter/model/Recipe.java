@@ -21,6 +21,8 @@ public class Recipe {
     private String name;
     private String notes;
     private BigDecimal amount;
+    private BigDecimal originalGravity;
+    private BigDecimal ibu;
     private ZonedDateTime creationDateTime;
     private ZonedDateTime lastEditDateTime;
 

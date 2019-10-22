@@ -11,7 +11,6 @@ import pl.brewers.supporter.brewerssupporter.repositories.BatchRepository;
 import pl.brewers.supporter.brewerssupporter.repositories.RecipeRepository;
 import pl.brewers.supporter.brewerssupporter.repositories.UserRepository;
 
-import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -42,13 +41,13 @@ public class BatchService {
                 .notes(brewingParams.getNotes())
                 .originalGravity(brewingParams.getOriginalGravity())
                 .fermentationTime(brewingParams.getFermentationTime())
-                .ibu(BigDecimal.valueOf(calculatingService.calculateIBU(
+                .ibu(calculatingService.calculateIBU(
                         HoopingDataRequestDTO.builder()
-                                .gravity(brewingParams.getOriginalGravity().doubleValue())
-                                .amount(brewingParams.getAmount().doubleValue())
+                                .gravity(brewingParams.getOriginalGravity())
+                                .amount(brewingParams.getAmount())
                                 .hoopingIngredients(recipe.getHoopingIngredients())
                                 .build()
-                ).getIbu()))
+                ).getIbu())
                 .finalGravity(brewingParams.getFinalGravity());
     }
 

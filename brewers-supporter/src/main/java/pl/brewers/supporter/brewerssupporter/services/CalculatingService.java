@@ -64,23 +64,22 @@ public class CalculatingService {
         return MashDataResponseDTO.builder()
                 .gravity(
                         sugarAmount
-                                .divide(BigDecimal.valueOf(data.getAmount()).multiply(BigDecimal.valueOf(1000)).subtract(sugarAmount.divide(BigDecimal.valueOf(1.587), 3, RoundingMode.HALF_DOWN)).add(sugarAmount), 3, RoundingMode.HALF_DOWN)
+                                .divide(data.getAmount().multiply(BigDecimal.valueOf(1000)).subtract(sugarAmount.divide(BigDecimal.valueOf(1.587), 3, RoundingMode.HALF_DOWN)).add(sugarAmount), 3, RoundingMode.HALF_DOWN)
                                 .multiply(BigDecimal.valueOf(100))
-                                .doubleValue()
                 )
                 .build();
     }
 
     public HoopingDataResponseDTO calculateIBU(HoopingDataRequestDTO data) {
         BigDecimal gravityConverted = convertGravity(data.getGravity());
-        BigDecimal amountConverted = BigDecimal.valueOf(data.getAmount());
+        BigDecimal amountConverted = data.getAmount();
 
         return HoopingDataResponseDTO.builder()
                 .ibu(
                         data.getHoopingIngredients().stream()
                                 .map(hoop -> calculateHoopUsing(hoop, gravityConverted, amountConverted))
                                 .reduce(BigDecimal.valueOf(0), BigDecimal::add)
-                                .doubleValue()
+
                 ).build();
     }
 
@@ -90,7 +89,7 @@ public class CalculatingService {
         return usedHoop.multiply(hoop.getHoop().getAlphaAcid().divide(BigDecimal.valueOf(100), 3, RoundingMode.HALF_EVEN)).multiply(hoop.getAmount()).multiply(BigDecimal.valueOf(1000).divide(amountConverted, 3, RoundingMode.HALF_EVEN));
     }
 
-    private BigDecimal convertGravity(double gravity) {
-        return BigDecimal.valueOf(260).divide(BigDecimal.valueOf(260).subtract(BigDecimal.valueOf(gravity)), 3, RoundingMode.HALF_DOWN);
+    private BigDecimal convertGravity(BigDecimal gravity) {
+        return BigDecimal.valueOf(260).divide(BigDecimal.valueOf(260).subtract(gravity), 3, RoundingMode.HALF_DOWN);
     }
 }

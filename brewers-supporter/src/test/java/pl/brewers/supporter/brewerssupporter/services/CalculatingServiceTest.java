@@ -49,20 +49,20 @@ public class CalculatingServiceTest {
     @Test
     public void checkCalculationMash() {
         MashDataRequestDTO request = MashDataRequestDTO.builder()
-                .amount(24.2)
+                .amount(BigDecimal.valueOf(24.2))
                 .maltingIngredients(List.of(
                         buildMaltingIngredient(BigDecimal.valueOf(7), BigDecimal.valueOf(82.5), BigDecimal.valueOf(2.8))
                         )
                 )
                 .build();
-        MashDataResponseDTO response = MashDataResponseDTO.builder().gravity(17.8).build();
-        Assert.assertEquals(response.getGravity(), calculatingService.calculateMashData(request).getGravity(), 0.2);
+        MashDataResponseDTO response = MashDataResponseDTO.builder().gravity(BigDecimal.valueOf(17.8)).build();
+        Assert.assertEquals(response.getGravity().doubleValue(), calculatingService.calculateMashData(request).getGravity().doubleValue(), 0.2);
     }
 
     @Test
     public void checkCalculationMashWithMultipleIngredients() {
         MashDataRequestDTO request = MashDataRequestDTO.builder()
-                .amount(24.2)
+                .amount(BigDecimal.valueOf(24.2))
                 .maltingIngredients(List.of(
                         buildMaltingIngredient(BigDecimal.valueOf(4), BigDecimal.valueOf(82.5), BigDecimal.valueOf(2.8)),
                         buildMaltingIngredient(BigDecimal.valueOf(0.32), BigDecimal.valueOf(81.6), BigDecimal.valueOf(6.25)),
@@ -70,8 +70,8 @@ public class CalculatingServiceTest {
                         )
                 )
                 .build();
-        MashDataResponseDTO response = MashDataResponseDTO.builder().gravity(16.6).build();
-        Assert.assertEquals(response.getGravity(), calculatingService.calculateMashData(request).getGravity(), 0.2);
+        MashDataResponseDTO response = MashDataResponseDTO.builder().gravity(BigDecimal.valueOf(16.6)).build();
+        Assert.assertEquals(response.getGravity().doubleValue(), calculatingService.calculateMashData(request).getGravity().doubleValue(), 0.2);
     }
 
 
@@ -91,8 +91,8 @@ public class CalculatingServiceTest {
     @Test
     public void checkCalculationIbuWithMultipleIngredients() {
         HoopingDataRequestDTO request = HoopingDataRequestDTO.builder()
-                .amount(20.0)
-                .gravity(14)
+                .amount(BigDecimal.valueOf(20.0))
+                .gravity(BigDecimal.valueOf(14))
                 .hoopingIngredients(List.of(
                         buildHoopingIngredient(BigDecimal.valueOf(15), 60, BigDecimal.valueOf(10)),
                         buildHoopingIngredient(BigDecimal.valueOf(10), 50, BigDecimal.valueOf(3)),
@@ -100,8 +100,8 @@ public class CalculatingServiceTest {
                         )
                 )
                 .build();
-        HoopingDataResponseDTO response = HoopingDataResponseDTO.builder().ibu(20.9).build();
-        Assert.assertEquals(response.getIbu(), calculatingService.calculateIBU(request).getIbu(), 0.2);
+        HoopingDataResponseDTO response = HoopingDataResponseDTO.builder().ibu(BigDecimal.valueOf(20.9)).build();
+        Assert.assertEquals(response.getIbu().doubleValue(), calculatingService.calculateIBU(request).getIbu().doubleValue(), 0.2);
     }
 
     private HoopingIngredient buildHoopingIngredient(BigDecimal amount, int time, BigDecimal alphaAcid) {
