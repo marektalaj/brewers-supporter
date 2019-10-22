@@ -11,6 +11,7 @@ import { AuthGuardService } from './service/auth-guard.service';
 import { RegisterComponent } from './register/register.component';
 import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
 import { RecipesComponent } from './recipes/recipes/recipes.component';
+import { RecipeDetailsComponent } from './recipes/recipe-details/recipe-details.component';
 
 
 
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent},
   { path: 'recipes', component: RecipesComponent},
   { path: 'recipes/add', component: AddRecipeComponent},
+  { path: 'recipes/details/:id', component: RecipeDetailsComponent},
   { path: 'calculator/refactometer', component: RefactometerComponent},
   { path: 'calculator/efficiency', component: EfficiencyComponent},
   { path: 'calculator/correction', component: CorrectionComponent},

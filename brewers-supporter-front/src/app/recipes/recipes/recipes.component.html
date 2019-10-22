@@ -3,6 +3,7 @@
             <tr>
                 <th>Nazwa przepisu</th>
                 <th>Ilość (l)</th>
+                <th>Akcja</th>
             </tr>
         </thead>
         <tbody>
@@ -12,6 +13,9 @@
                 </td>
                 <td>
                     {{recipe.amount}}
+                </td>
+                <td>
+                    <Button class="btn" (click)="goToDetails(recipe.id)">Szczegóły</Button>
                 </td>
             </tr>
         </tbody>

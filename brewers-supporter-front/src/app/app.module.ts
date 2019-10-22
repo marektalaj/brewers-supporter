@@ -19,6 +19,7 @@ import { AlcoholComponent } from './calculators/alcohol/alcohol.component';
 import { CorrectionComponent } from './calculators/correction/correction.component';
 import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
 import { RecipesComponent } from './recipes/recipes/recipes.component';
+import { RecipeDetailsComponent } from './recipes/recipe-details/recipe-details.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { RecipesComponent } from './recipes/recipes/recipes.component';
     CorrectionComponent,
     AddRecipeComponent,
     RecipesComponent,
+    RecipeDetailsComponent,
   ],
   imports: [
     HttpClientModule,

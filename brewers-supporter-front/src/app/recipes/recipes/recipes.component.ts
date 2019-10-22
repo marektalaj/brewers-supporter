@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeService } from 'src/app/service/recipe-service.service';
 import { Recipe } from 'src/app/model/Recipe';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipes',
@@ -10,24 +11,22 @@ import { Recipe } from 'src/app/model/Recipe';
 export class RecipesComponent implements OnInit {
   recipes: Recipe[]
 
-  constructor(private recipeService: RecipeService) { }
+  constructor(private recipeService: RecipeService,
+    private router: Router) { }
 
   ngOnInit() {
     this.recipeService.getRecipeByUsername(sessionStorage.getItem('username')).subscribe(
       data => {
-        console.log(data)
         this.recipes = data;
-        this.recipeService.getRecipeById(this.recipes[0].id).subscribe(
-          data => {
-            console.log(data)
-          }
-        )
-
       },
       error => {
-        window.alert("nie udało się" );
+        window.alert("nie udało się wczytac" );
       }
     )
+  }
+
+  goToDetails(id){
+    this.router.navigate(['recipes/details', id]);
   }
 
 }

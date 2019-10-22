@@ -10,6 +10,7 @@ import { AdditionalIngredient } from 'src/app/model/AdditionalIngredient';
 import { HoopingIngredient } from 'src/app/model/HoopingIngredient';
 import { YeastAsIngredient } from 'src/app/model/YeastAsIngredient';
 import { RecipeService } from 'src/app/service/recipe-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-recipe',
@@ -31,7 +32,8 @@ export class AddRecipeComponent implements OnInit {
   recipe: Recipe = new Recipe;
 
 
-  constructor(private service: IngredientService,
+  constructor(private router: Router,
+    private service: IngredientService,
     private recipeService: RecipeService) { }
 
   addFieldValue() {
@@ -77,10 +79,10 @@ export class AddRecipeComponent implements OnInit {
     this.recipe.yeast = this.yeastAsIngredient;
     this.recipeService.saveRecipe(this.recipe, sessionStorage.getItem('username')).subscribe(
       data =>{
-        window.alert("good job")
+        this.router.navigate(['recipes']);
       },
       error => {
-        window.alert("good job")
+        window.alert("nie udalo sie zapisać")
       }
       
     )
