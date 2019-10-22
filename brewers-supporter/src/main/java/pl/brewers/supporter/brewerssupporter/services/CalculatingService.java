@@ -1,6 +1,7 @@
 package pl.brewers.supporter.brewerssupporter.services;
 
 import org.springframework.stereotype.Service;
+import pl.brewers.supporter.brewerssupporter.dto.HoopingDataRequestDTO;
 import pl.brewers.supporter.brewerssupporter.dto.HoopingDataResponseDTO;
 import pl.brewers.supporter.brewerssupporter.dto.MashDataRequestDTO;
 import pl.brewers.supporter.brewerssupporter.dto.MashDataResponseDTO;

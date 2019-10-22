@@ -5,4 +5,6 @@ export class MaltingIngredient{
     time: number;
     amount: number;
     malt: Malt;
+    constructor(){
+    }
 }
