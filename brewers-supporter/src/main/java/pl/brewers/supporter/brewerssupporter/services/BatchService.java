@@ -41,13 +41,7 @@ public class BatchService {
                 .notes(brewingParams.getNotes())
                 .originalGravity(brewingParams.getOriginalGravity())
                 .fermentationTime(brewingParams.getFermentationTime())
-                .ibu(calculatingService.calculateIBU(
-                        HoopingDataRequestDTO.builder()
-                                .gravity(brewingParams.getOriginalGravity())
-                                .amount(brewingParams.getAmount())
-                                .hoopingIngredients(recipe.getHoopingIngredients())
-                                .build()
-                ).getIbu())
+                .ibu(recipe.getIbu())
                 .finalGravity(brewingParams.getFinalGravity());
     }
 
@@ -59,5 +53,9 @@ public class BatchService {
         Batch batch = batchRepository.findById(batchId).orElse(Batch.builder().build());
         return batchRepository.save(buildBatch(batch.toBuilder(), brewingParams, batch.getRecipe())
                 .build());
+    }
+
+    public Batch getBatchById(Long batchId) {
+        return batchRepository.findById(batchId).orElse(null);
     }
 }

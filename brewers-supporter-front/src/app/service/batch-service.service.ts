@@ -16,10 +16,15 @@ export class BatchServiceService {
   }
 
   updateBatch(batchId, brewingParams: BrewingParams) {
-    return this.httpClient.put<Batch>(this.baseUrl + '/' + batchId, brewingParams);
+    return this.httpClient.put<Batch>(this.baseUrl + '/edit/' + batchId, brewingParams);
   }
 
   getRecipesByUsername(username) {
     return this.httpClient.get<Batch[]>(this.baseUrl + '/' + username);
   }
+
+  getRecipesById(id) {
+    return this.httpClient.get<Batch>(this.baseUrl + '/id/' + id);
+  }
+
 }

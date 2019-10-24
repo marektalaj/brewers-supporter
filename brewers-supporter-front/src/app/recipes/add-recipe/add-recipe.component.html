@@ -54,7 +54,7 @@
                                 [(ngModel)]="newMaltingIngredient.amount" name="newAttributeName" />
                         </td>
                         <td>
-                            <ng-select [items]="malts | async" bindLabel="type" autofocus name="malt"
+                            <ng-select [items]="malts | async" bindLabel="type" name="malt"
                                 [(ngModel)]="newMaltingIngredient.malt">
                             </ng-select>
                         </td>
@@ -102,7 +102,7 @@
                                 [(ngModel)]="newHoopingIngredient.amount" name="newAttributeName" />
                         </td>
                         <td>
-                            <ng-select [items]="hoops | async" bindLabel="name" autofocus name="hoop"
+                            <ng-select [items]="hoops | async" bindLabel="name" name="hoop"
                                 [(ngModel)]="newHoopingIngredient.hoop">
                             </ng-select>
                         </td>
@@ -172,7 +172,7 @@
         <div class="form-group">
             <label for="inputName" class="col-sm-2 col-form-label">Wybierz drożdże</label>
             <div class="col-sm-10">
-                <ng-select [items]="yeasts | async" bindLabel="name" autofocus name="yeast"
+                <ng-select [items]="yeasts | async" bindLabel="name" name="yeast"
                     [(ngModel)]="yeastAsIngredient.yeast">
                 </ng-select>
             </div>

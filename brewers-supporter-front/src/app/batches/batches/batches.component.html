@@ -8,22 +8,22 @@
                             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let recipe of recipes; let i = index">
+            <tr *ngFor="let batch of batches; let i = index">
                 <td>
-                    {{recipe.name}}
+                    {{batch.recipe.name}}
                 </td>
                 <td>
-                    {{recipe.amount}}
+                    {{batch.ibu}}
                 </td>
                 <td>
-                    {{recipe.creationDateTime | date   }}
+                    {{batch.brewingDate | date   }}
                 </td>
                 <td>
-                    <Button class="btn" [routerLink] = "['/recipes', recipe.id, 'details']"><fa size="lg" name="info"></fa></Button>
+                    <!-- <Button class="btn" [routerLink] = "['/recipes', recipe.id, 'details']"><fa size="lg" name="info"></fa></Button>
                     <Button class="btn" [routerLink] = "['/recipes', recipe.id, 'edit'] "><fa size="lg" name="edit"></fa></Button>
                     <Button class="btn" [routerLink] = "['/batches', recipe.id, 'brew'] "><fa size="lg" name="beer"></fa></Button>
                     
-                    
+                     -->
                 </td>
             </tr>
         </tbody>
