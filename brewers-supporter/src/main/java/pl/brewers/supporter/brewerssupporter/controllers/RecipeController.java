@@ -19,9 +19,9 @@ public class RecipeController {
         return recipeService.saveRecipe(recipe, username);
     }
 
-    @PutMapping
-    public Recipe updateRecipe(@RequestBody Recipe recipe) {
-        return recipeService.update(recipe);
+    @PutMapping("/edit/{username}")
+    public Recipe updateRecipe(@RequestBody Recipe recipe, @PathVariable String username) {
+        return recipeService.update(recipe, username);
     }
 
     @GetMapping("/id/{id}")

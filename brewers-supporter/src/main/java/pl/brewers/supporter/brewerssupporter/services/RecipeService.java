@@ -8,6 +8,7 @@ import pl.brewers.supporter.brewerssupporter.model.Recipe;
 import pl.brewers.supporter.brewerssupporter.repositories.RecipeRepository;
 import pl.brewers.supporter.brewerssupporter.repositories.UserRepository;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Service
@@ -19,14 +20,21 @@ public class RecipeService {
     private final CalculatingService calculatingService;
 
     public Recipe saveRecipe(Recipe recipe, String username) {
-        recipe.setAuthor(userService.getUserByUsername(username));
-        recipe.setOriginalGravity(calculatingService.calculateMashData(MashDataRequestDTO.builder().amount(recipe.getAmount()).maltingIngredients(recipe.getMaltingIngredients()).build()).getGravity());
-        recipe.setIbu(calculatingService.calculateIBU(HoopingDataRequestDTO.builder().amount(recipe.getAmount()).gravity(recipe.getOriginalGravity()).hoopingIngredients(recipe.getHoopingIngredients()).build()).getIbu());
+        setRecipeNeededVariables(recipe, username);
+        recipe.setCreationDateTime(ZonedDateTime.now());
         return recipeRepository.save(recipe);
     }
 
-    public Recipe update(Recipe recipe) {
+    public Recipe update(Recipe recipe, String username) {
+        setRecipeNeededVariables(recipe, username);
         return recipeRepository.save(recipe);
+    }
+
+    private void setRecipeNeededVariables(Recipe recipe, String username) {
+        recipe.setAuthor(userService.getUserByUsername(username));
+        recipe.setOriginalGravity(calculatingService.calculateMashData(MashDataRequestDTO.builder().amount(recipe.getAmount()).maltingIngredients(recipe.getMaltingIngredients()).build()).getGravity());
+        recipe.setIbu(calculatingService.calculateIBU(HoopingDataRequestDTO.builder().amount(recipe.getAmount()).gravity(recipe.getOriginalGravity()).hoopingIngredients(recipe.getHoopingIngredients()).build()).getIbu());
+        recipe.setLastEditDateTime(ZonedDateTime.now());
     }
 
     public Recipe getRecipeById(Long id) {
