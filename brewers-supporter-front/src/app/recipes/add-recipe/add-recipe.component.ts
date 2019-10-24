@@ -10,7 +10,7 @@ import { AdditionalIngredient } from 'src/app/model/AdditionalIngredient';
 import { HoopingIngredient } from 'src/app/model/HoopingIngredient';
 import { YeastAsIngredient } from 'src/app/model/YeastAsIngredient';
 import { RecipeService } from 'src/app/service/recipe-service.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-recipe',
@@ -21,6 +21,7 @@ export class AddRecipeComponent implements OnInit {
   malts: Observable<Malt[]>;
   hoops: Observable<Hoop[]>;
   yeasts: Observable<Yeast[]>;
+  toEdit: boolean = false;
   malt: Malt;
   yeastAsIngredient: YeastAsIngredient = new YeastAsIngredient;
   maltingIngredients: Array<MaltingIngredient> = [];
@@ -34,7 +35,8 @@ export class AddRecipeComponent implements OnInit {
 
   constructor(private router: Router,
     private service: IngredientService,
-    private recipeService: RecipeService) { }
+    private recipeService: RecipeService,
+    private activeRout: ActivatedRoute) { }
 
   addFieldValue() {
     this.maltingIngredients.push(this.newMaltingIngredient)
@@ -72,19 +74,42 @@ export class AddRecipeComponent implements OnInit {
     this.malts = this.service.malts();
     this.hoops = this.service.hoops();
     this.yeasts = this.service.yeasts();
+    if (this.activeRout.snapshot.paramMap.get('id')) {
+      this.recipeService.getRecipeById(this.activeRout.snapshot.paramMap.get('id')).subscribe(
+        data => {
+          this.recipe = data;
+          this.maltingIngredients = this.recipe.maltingIngredients;
+          this.hoopingIngredients = this.recipe.hoopingIngredients;
+          this.additionalIngredients = this.recipe.additionalIngredients;
+          this.yeastAsIngredient = this.recipe.yeast;
+          this.toEdit = true;
+        }
+      )
+    }
   }
 
 
   saveRecipe() {
     this.recipe.yeast = this.yeastAsIngredient;
-    this.recipeService.saveRecipe(this.recipe, sessionStorage.getItem('username')).subscribe(
-      data =>{
-        this.router.navigate(['recipes']);
-      },
-      error => {
-        window.alert("nie udalo sie zapisać")
-      }
-      
-    )
+    if (this.toEdit) {
+      this.recipeService.updateRecipe(this.recipe, sessionStorage.getItem('username')).subscribe(
+        data => {
+          this.router.navigate(['recipes']);
+        },
+        error => {
+          window.alert("nie udalo sie zapisać")
+        }
+      )
+    } else {
+
+      this.recipeService.saveRecipe(this.recipe, sessionStorage.getItem('username')).subscribe(
+        data => {
+          this.router.navigate(['recipes']);
+        },
+        error => {
+          window.alert("nie udalo sie zapisać")
+        }
+      )
+    }
   }
 }

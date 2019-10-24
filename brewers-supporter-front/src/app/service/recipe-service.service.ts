@@ -14,8 +14,8 @@ export class RecipeService {
     return this.httpClient.post<Recipe>(this.baseUrl + '/' + username, recipe);
   }
 
-  updateRecipe(recipe: Recipe) {
-    return this.httpClient.put<Recipe>(this.baseUrl, recipe);
+  updateRecipe(recipe: Recipe, username) {
+    return this.httpClient.put<Recipe>(this.baseUrl+ '/edit/' + username, recipe);
   }
 
   getRecipeById(id) {

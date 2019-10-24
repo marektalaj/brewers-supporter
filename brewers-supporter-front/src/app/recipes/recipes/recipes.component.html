@@ -3,8 +3,9 @@
             <tr>
                 <th>Nazwa przepisu</th>
                 <th>Ilość (l)</th>
+                <th>Data utworzenia</th>
                 <th>Akcja</th>
-            </tr>
+                            </tr>
         </thead>
         <tbody>
             <tr *ngFor="let recipe of recipes; let i = index">
@@ -15,7 +16,11 @@
                     {{recipe.amount}}
                 </td>
                 <td>
-                    <Button class="btn" (click)="goToDetails(recipe.id)">Szczegóły</Button>
+                    {{recipe.creationDateTime | date   }}
+                </td>
+                <td>
+                    <Button class="btn btn-primary" [routerLink] = "['/recipes', recipe.id, 'details']">Szczegóły</Button>
+                    <Button class="btn btn-primary" [routerLink] = "['/recipes', recipe.id, 'edit'] ">Edytuj</Button>
                 </td>
             </tr>
         </tbody>

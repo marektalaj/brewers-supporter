@@ -19,8 +19,8 @@ public class User {
     private String email;
     private String username;
     private String password;
-    @OneToMany(mappedBy = "author")
+    @OneToMany
     private List<Recipe> recipes;
-    @OneToMany(mappedBy = "author")
-    private List<Recipe> batches;
+    @OneToMany
+    private List<Batch> batches;
 }
