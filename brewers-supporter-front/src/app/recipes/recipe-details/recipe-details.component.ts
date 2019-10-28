@@ -23,9 +23,8 @@ export class RecipeDetailsComponent implements OnInit {
     this.recipeServ.getRecipeById(this.id).subscribe(
       data =>{
         this.recipe = data;
-        console.log(this.recipe.hoopingIngredients)
       }
-    )
+    );
   }
 
 }

@@ -1,15 +1,16 @@
 <header>
     <nav class ="navbar navbar-expand-md navbar-dark bg-dark">
-<<<<<<< Updated upstream
+
     <div class="navbar-brand">BrewersSupporter</div>
-=======
+
     <div class="navbar-brand" routerLink="/">Pomocnik piwowara domowego</div>
->>>>>>> Stashed changes
+
     
     <ul class="navbar-nav">
       <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/" class="nav-link">Strona główna</a></li>
       <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/recipes/add" class="nav-link">Dodaj przepis</a></li>
       <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/recipes" class="nav-link">Moje przepisy</a></li>
+      <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/batches" class="nav-link">Moje warki</a></li>
       <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">Logowanie</a></li>
       <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link">Wyloguj sie!</a></li>
       <li><div class="col">

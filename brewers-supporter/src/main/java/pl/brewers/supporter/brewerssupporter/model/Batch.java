@@ -36,10 +36,8 @@ public class Batch {
     private BigDecimal amountAfterBoiling;
     private BigDecimal ibu;
 
-    @JsonIgnore
     @ManyToOne
     private Recipe recipe;
-    @JsonIgnore
     @ManyToOne
     private User author;
 

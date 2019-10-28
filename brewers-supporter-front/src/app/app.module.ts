@@ -20,6 +20,10 @@ import { CorrectionComponent } from './calculators/correction/correction.compone
 import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
 import { RecipesComponent } from './recipes/recipes/recipes.component';
 import { RecipeDetailsComponent } from './recipes/recipe-details/recipe-details.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { BrewBatchComponent } from './batches/brew-batch/brew-batch.component';
+import { BatchesComponent } from './batches/batches/batches.component';
+import { BatchDetailsComponent } from './batches/batch-details/batch-details.component';
 
 
 @NgModule({
@@ -37,6 +41,9 @@ import { RecipeDetailsComponent } from './recipes/recipe-details/recipe-details.
     AddRecipeComponent,
     RecipesComponent,
     RecipeDetailsComponent,
+    BrewBatchComponent,
+    BatchesComponent,
+    BatchDetailsComponent,
   ],
   imports: [
     HttpClientModule,
@@ -45,6 +52,7 @@ import { RecipeDetailsComponent } from './recipes/recipe-details/recipe-details.
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    AngularFontAwesomeModule,
     NgbModule
   ],
   providers: [
