@@ -94,7 +94,7 @@ export class AddRecipeComponent implements OnInit {
     if (this.toEdit) {
       this.recipeService.updateRecipe(this.recipe, sessionStorage.getItem('username')).subscribe(
         data => {
-          this.router.navigate(['recipes']);
+          this.router.navigate(['recipes', data.id, 'details']);
         },
         error => {
           window.alert("nie udalo sie zapisać")
@@ -104,7 +104,7 @@ export class AddRecipeComponent implements OnInit {
 
       this.recipeService.saveRecipe(this.recipe, sessionStorage.getItem('username')).subscribe(
         data => {
-          this.router.navigate(['recipes']);
+          this.router.navigate(['recipes', data.id, 'details']);
         },
         error => {
           window.alert("nie udalo sie zapisać")

@@ -4,7 +4,7 @@ import { User } from './User';
 export class Batch{
     id: number;
     brewingDate: string;
-    fermentationTime: string;
+    fermentationTime: number;
     notes: string;
     alcoholByVolume: number;
     originalGravity: number;

@@ -144,7 +144,7 @@
                 <label for="inputAmount" class="col-sm-4">Ilość przed gotowaniem (L)</label>
                 <div class="col-sm-8">
                     <input type="number" class="form-control" id="inputAmount" placeholder="Ilość w litrach"
-                        name="amount" [(ngModel)]="brewingParams.amountBeforeBoiling">
+                        name="amountBeforeBoiling" [(ngModel)]="brewingParams.amountBeforeBoiling">
                 </div>
             </div>
             <div class="row">
@@ -155,8 +155,11 @@
                 </div>
             </div>
             <br>
-            <div class="col-sm-12">
+            <div *ngIf="!editing" class="col-sm-12">
                 <button type="submit" class="btn btn-primary">Uwarz</button>
+            </div>
+            <div *ngIf="editing" class="col-sm-12">
+                <button type="submit" class="btn btn-primary">Aktualizuj warke</button>
             </div>
         </div>
     </form>

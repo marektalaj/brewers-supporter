@@ -3,7 +3,9 @@
             <tr>
                 <th>Nazwa przepisu</th>
                 <th>Ilość (l)</th>
-                <th>Data utworzenia</th>
+                <th>Alkohol %</th>
+                <th>IBU</th>
+                <th>Data uwarzenia</th>
                 <th>Akcja</th>
                             </tr>
         </thead>
@@ -13,17 +15,23 @@
                     {{batch.recipe.name}}
                 </td>
                 <td>
+                    {{batch.amountAfterBoiling}}
+                </td>
+                <td>
+                    {{batch.alcoholByVolume || "Brak informacji niezbędnych do oszacowania"}}
+                </td>
+                <td>
                     {{batch.ibu}}
                 </td>
                 <td>
                     {{batch.brewingDate | date   }}
                 </td>
                 <td>
-                    <!-- <Button class="btn" [routerLink] = "['/recipes', recipe.id, 'details']"><fa size="lg" name="info"></fa></Button>
-                    <Button class="btn" [routerLink] = "['/recipes', recipe.id, 'edit'] "><fa size="lg" name="edit"></fa></Button>
-                    <Button class="btn" [routerLink] = "['/batches', recipe.id, 'brew'] "><fa size="lg" name="beer"></fa></Button>
+                    <Button class="btn" [routerLink] = "['/batches', batch.id, 'details']"><fa size="lg" name="info"></fa></Button>
+                    <!-- <Button class="btn" [routerLink] = "['/batches', batch.id, 'edit'] "><fa size="lg" name="edit"></fa></Button> -->
+                    <Button class="btn" [routerLink] = "['/batches', batch.id, 'edit'] "><fa size="lg" name="edit"></fa></Button>
                     
-                     -->
+                    
                 </td>
             </tr>
         </tbody>

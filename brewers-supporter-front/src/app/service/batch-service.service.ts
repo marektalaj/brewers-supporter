@@ -23,7 +23,7 @@ export class BatchServiceService {
     return this.httpClient.get<Batch[]>(this.baseUrl + '/' + username);
   }
 
-  getRecipesById(id) {
+  getBatchById(id) {
     return this.httpClient.get<Batch>(this.baseUrl + '/id/' + id);
   }
 
