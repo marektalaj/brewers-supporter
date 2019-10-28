@@ -29,4 +29,12 @@ export class BatchesComponent implements OnInit {
     this.router.navigate(['recipes/details', id]);
   }
 
+  deleteBatch(id){
+    this.batchService.deleteBatch(id).subscribe(
+      data =>{
+        this.ngOnInit();
+      }
+    );
+  }
+
 }

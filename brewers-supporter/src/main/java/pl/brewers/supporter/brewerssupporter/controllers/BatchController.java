@@ -28,6 +28,11 @@ public class BatchController {
         return batchService.updateBatch(brewingParamsDTO, batchId);
     }
 
+    @DeleteMapping(value = "/delete/{batchId}")
+    public void deleteBatch(@PathVariable Long batchId){
+        batchService.deleteBatch(batchId);
+    }
+
     @GetMapping("/{username}")
     public List<Batch> getBatchesByUsername(@PathVariable String username) {
         return batchService.getRecipeByUsername(username);

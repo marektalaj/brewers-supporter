@@ -11,6 +11,7 @@ import { HoopingIngredient } from 'src/app/model/HoopingIngredient';
 import { YeastAsIngredient } from 'src/app/model/YeastAsIngredient';
 import { RecipeService } from 'src/app/service/recipe-service.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MaltingStage } from 'src/app/model/MaltingStage';
 
 @Component({
   selector: 'app-add-recipe',
@@ -26,6 +27,8 @@ export class AddRecipeComponent implements OnInit {
   yeastAsIngredient: YeastAsIngredient = new YeastAsIngredient;
   maltingIngredients: Array<MaltingIngredient> = [];
   newMaltingIngredient: MaltingIngredient = new MaltingIngredient();
+  maltingStages: Array<MaltingStage> = [];
+  newMaltingStage: MaltingStage = new MaltingStage();
   additionalIngredients: Array<AdditionalIngredient> = [];
   newAdditionalIngredient: AdditionalIngredient = new AdditionalIngredient();
   hoopingIngredients: Array<HoopingIngredient> = [];
@@ -47,6 +50,17 @@ export class AddRecipeComponent implements OnInit {
 
   deleteFieldValue(index) {
     this.maltingIngredients.splice(index, 1);
+  }
+
+  addMaltingStageValue() {
+    this.maltingStages.push(this.newMaltingStage)
+    this.newMaltingStage = new MaltingStage();
+    this.recipe.maltingStages = this.maltingStages;
+
+  }
+
+  deleteMaltingStageValue(index) {
+    this.maltingStages.splice(index, 1);
   }
 
   addFieldValueHoop() {
@@ -81,6 +95,7 @@ export class AddRecipeComponent implements OnInit {
           this.maltingIngredients = this.recipe.maltingIngredients;
           this.hoopingIngredients = this.recipe.hoopingIngredients;
           this.additionalIngredients = this.recipe.additionalIngredients;
+          this.maltingStages = this.recipe.maltingStages;
           this.yeastAsIngredient = this.recipe.yeast;
           this.toEdit = true;
         }

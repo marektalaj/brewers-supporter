@@ -28,6 +28,10 @@ public class Recipe {
 
     @Singular
     @OneToMany(cascade = CascadeType.ALL)
+    private final List<MaltingStage> maltingStages = new ArrayList<>();
+
+    @Singular
+    @OneToMany(cascade = CascadeType.ALL)
     private final List<MaltingIngredient> maltingIngredients = new ArrayList<>();
 
     @Singular

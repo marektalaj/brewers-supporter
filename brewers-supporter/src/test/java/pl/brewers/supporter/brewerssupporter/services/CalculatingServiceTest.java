@@ -78,7 +78,6 @@ public class CalculatingServiceTest {
     private MaltingIngredient buildMaltingIngredient(BigDecimal amount, BigDecimal extraction, BigDecimal ebc) {
         return MaltingIngredient.builder()
                 .amount(amount)
-                .time(60)
                 .malt(Malt.builder()
                         .extraction(extraction)
                         .ebc(ebc)

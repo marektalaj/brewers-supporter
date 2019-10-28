@@ -94,6 +94,29 @@
                     </div>
                 </div>
     <br>
+    <div *ngIf="batch && batch.recipe && batch.recipe.maltingStages.length != 0" class="row">
+            <h4 for="inputMalts" class="col-sm-10">Etapy zacierania</h4>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Czas wysładzania(min)</th>
+                        <th>Teamperatura</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let maltingStage of  batch && batch.recipe && batch.recipe.maltingStages || [] ; let i = index">
+                        <td>
+                            {{maltingStage.time}}
+                        </td>
+                        <td>
+                            {{maltingStage.temperature}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    
+    <br>
     <h3 class="col-sm-10 text-center">Składniki</h3>
     <div class="row justify-content-center ">
             <label class="col-4 font-weight-bold">
@@ -108,16 +131,12 @@
         <table class="table table-striped table-bordered">
             <thead>
                 <tr>
-                    <th>Czas wysładzania(min)</th>
                     <th>Ilość (Kg)</th>
                     <th>Rodzaj słodu</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let maltingIngredient of  batch && batch.recipe && batch.recipe.maltingIngredients || [] ; let i = index">
-                    <td>
-                        {{maltingIngredient.time}}
-                    </td>
                     <td>
                         {{maltingIngredient.amount}}
                     </td>

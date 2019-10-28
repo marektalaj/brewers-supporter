@@ -15,6 +15,10 @@ export class RecipesComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    this.loadRecipes();
+  }
+
+  loadRecipes(){
     this.recipeService.getRecipeByUsername(sessionStorage.getItem('username')).subscribe(
       data => {
         this.recipes = data;
@@ -29,4 +33,12 @@ export class RecipesComponent implements OnInit {
     this.router.navigate(['recipes/details', id]);
   }
 
+  deleteRecipe(id){
+    this.recipeService.deleteRecipe(id).subscribe(
+      data => {
+        this.loadRecipes();
+      }
+    );
+    
+  }
 }
