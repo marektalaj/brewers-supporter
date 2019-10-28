@@ -22,6 +22,7 @@
                     <Button class="btn" [routerLink] = "['/recipes', recipe.id, 'details']"><fa size="lg" name="info"></fa></Button>
                     <Button class="btn" [routerLink] = "['/recipes', recipe.id, 'edit'] "><fa size="lg" name="edit"></fa></Button>
                     <Button class="btn" [routerLink] = "['/batches', recipe.id, 'brew'] "><fa size="lg" name="beer"></fa></Button>
+                    <Button class="btn" (click)="deleteRecipe(recipe.id)"  ><fa size="lg" name="remove"></fa></Button>
                     
                     
                 </td>

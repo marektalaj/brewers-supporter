@@ -1,27 +1,21 @@
 package pl.brewers.supporter.brewerssupporter.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
-import javax.persistence.*;
-import java.math.BigDecimal;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-public class MaltingIngredient {
+public class MaltingStage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private BigDecimal amount;
-
-    @ManyToOne
-    private Recipe recipe;
-
-    @ManyToOne
-    private Malt malt;
-
-
+    private int time;
+    private int temperature;
 }

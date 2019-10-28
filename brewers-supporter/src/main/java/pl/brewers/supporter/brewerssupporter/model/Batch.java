@@ -24,7 +24,7 @@ public class Batch {
 
     private BigDecimal calculateAlcohol() {
         if (finalGravity != null && originalGravity != null) {
-            return originalGravity.add(finalGravity).divide(BigDecimal.valueOf(2), 2, RoundingMode.HALF_EVEN);
+            return originalGravity.subtract(finalGravity).divide(BigDecimal.valueOf(1.938), 2, RoundingMode.HALF_EVEN);
         }
         return null;
     }

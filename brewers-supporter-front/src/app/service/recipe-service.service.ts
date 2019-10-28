@@ -25,4 +25,8 @@ export class RecipeService {
   getRecipeByUsername(username) {
     return this.httpClient.get<Recipe[]>(this.baseUrl + '/username/' + username)
   }
+
+  deleteRecipe(id){
+    return this.httpClient.delete(this.baseUrl +'/delete/'+id);
+  }
 }

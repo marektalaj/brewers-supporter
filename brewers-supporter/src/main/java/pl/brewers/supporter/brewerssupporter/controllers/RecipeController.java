@@ -24,6 +24,11 @@ public class RecipeController {
         return recipeService.update(recipe, username);
     }
 
+    @DeleteMapping(value = "/delete/{recipeId}")
+    public void deleteRecipe(@PathVariable Long recipeId){
+        recipeService.deleteRecipe(recipeId);
+    }
+
     @GetMapping("/id/{id}")
     public Recipe getRecipeById(@PathVariable String id) {
         return recipeService.getRecipeById(Long.parseLong(id));

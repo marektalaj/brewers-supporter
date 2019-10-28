@@ -56,7 +56,7 @@ public class BatchService {
 
     private BigDecimal calculateAlcohol(BigDecimal originalGravity, BigDecimal finalGravity) {
         if (finalGravity != null && originalGravity != null) {
-            return originalGravity.add(finalGravity).divide(BigDecimal.valueOf(2), 2, RoundingMode.HALF_EVEN);
+            return originalGravity.subtract(finalGravity).divide(BigDecimal.valueOf(2), 2, RoundingMode.HALF_EVEN);
         }
         return null;
     }
@@ -69,5 +69,9 @@ public class BatchService {
 
     public Batch getBatchById(Long batchId) {
         return batchRepository.findById(batchId).orElse(null);
+    }
+
+    public void deleteBatch(Long batchId) {
+        batchRepository.deleteById(batchId);
     }
 }

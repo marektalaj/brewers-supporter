@@ -45,4 +45,7 @@ public class RecipeService {
         return recipeRepository.findByAuthor(userRepository.findByUsername(username));
     }
 
+    public void deleteRecipe(Long recipeId) {
+        recipeRepository.deleteById(recipeId);
+    }
 }

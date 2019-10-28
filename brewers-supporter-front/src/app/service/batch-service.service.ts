@@ -27,4 +27,8 @@ export class BatchServiceService {
     return this.httpClient.get<Batch>(this.baseUrl + '/id/' + id);
   }
 
+  deleteBatch(id){
+    return this.httpClient.delete(this.baseUrl +'/delete/'+id);
+  }
+
 }

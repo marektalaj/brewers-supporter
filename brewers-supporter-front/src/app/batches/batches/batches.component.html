@@ -28,8 +28,8 @@
                 </td>
                 <td>
                     <Button class="btn" [routerLink] = "['/batches', batch.id, 'details']"><fa size="lg" name="info"></fa></Button>
-                    <!-- <Button class="btn" [routerLink] = "['/batches', batch.id, 'edit'] "><fa size="lg" name="edit"></fa></Button> -->
                     <Button class="btn" [routerLink] = "['/batches', batch.id, 'edit'] "><fa size="lg" name="edit"></fa></Button>
+                    <Button class="btn" (click)="deleteBatch(batch.id)"  ><fa size="lg" name="remove"></fa></Button>
                     
                     
                 </td>
