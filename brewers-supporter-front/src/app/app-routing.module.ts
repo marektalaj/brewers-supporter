@@ -12,6 +12,9 @@ import { RegisterComponent } from './register/register.component';
 import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
 import { RecipesComponent } from './recipes/recipes/recipes.component';
 import { RecipeDetailsComponent } from './recipes/recipe-details/recipe-details.component';
+import { BrewBatchComponent } from './batches/brew-batch/brew-batch.component';
+import { BatchesComponent } from './batches/batches/batches.component';
+import { BatchDetailsComponent } from './batches/batch-details/batch-details.component';
 
 
 
@@ -21,6 +24,10 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent },
   { path: 'register', component: RegisterComponent},
   { path: 'recipes', component: RecipesComponent},
+  { path: 'batches/:recipeId/brew', component: BrewBatchComponent},
+  { path: 'batches/:batchId/edit', component: BrewBatchComponent},
+  { path: 'batches/:id/details', component: BatchDetailsComponent},
+  { path: 'batches', component: BatchesComponent},
   { path: 'recipes/add', component: AddRecipeComponent},
   { path: 'recipes/:id/edit', component: AddRecipeComponent},
   { path: 'recipes/:id/details', component: RecipeDetailsComponent},

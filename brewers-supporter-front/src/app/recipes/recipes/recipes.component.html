@@ -19,8 +19,11 @@
                     {{recipe.creationDateTime | date   }}
                 </td>
                 <td>
-                    <Button class="btn btn-primary" [routerLink] = "['/recipes', recipe.id, 'details']">Szczegóły</Button>
-                    <Button class="btn btn-primary" [routerLink] = "['/recipes', recipe.id, 'edit'] ">Edytuj</Button>
+                    <Button class="btn" [routerLink] = "['/recipes', recipe.id, 'details']"><fa size="lg" name="info"></fa></Button>
+                    <Button class="btn" [routerLink] = "['/recipes', recipe.id, 'edit'] "><fa size="lg" name="edit"></fa></Button>
+                    <Button class="btn" [routerLink] = "['/batches', recipe.id, 'brew'] "><fa size="lg" name="beer"></fa></Button>
+                    
+                    
                 </td>
             </tr>
         </tbody>

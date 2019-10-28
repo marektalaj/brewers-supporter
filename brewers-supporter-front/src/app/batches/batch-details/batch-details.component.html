@@ -1,0 +1,187 @@
+<div *ngIf="!batch;else other_content">
+    <p>Wczytywania ...</p>
+</div>
+<div class="container justify-content-center">
+    <div class="row justify-content-center">
+        <h2 class="text-center">{{batch && batch.recipe && batch.recipe.name || ""}}</h2>
+    </div>
+    <div *ngIf="batch && batch.amountBeforeBoiling" class="row justify-content-center ">
+        <label class="col-4 font-weight-bold">
+            Ilość przed gotowaniem:
+        </label>
+        <div class="col-4">
+            {{batch && batch.amountBeforeBoiling + " L" || ""}}
+        </div>
+    </div>
+    <div class="row justify-content-center ">
+        <label class="col-4 font-weight-bold">
+            Ilość:
+        </label>
+        <div class="col-4">
+            {{batch && batch.amountAfterBoiling + " L" || ""}}
+        </div>
+    </div>
+    <div *ngIf="batch && batch.amountBeforeBoiling" class="row justify-content-center ">
+        <label class="col-4 font-weight-bold">
+            Ilość przed gotowaniem:
+        </label>
+        <div class="col-4">
+            {{batch && batch.amountBeforeBoiling + " L" || ""}}
+        </div>
+    </div>
+    <div *ngIf="batch && batch.alcoholByVolume" class="row justify-content-center ">
+        <label class="col-4 font-weight-bold">
+            Alkohol:
+        </label>
+        <div class="col-4">
+            {{batch && batch.alcoholByVolume + " %" || ""}}
+        </div>
+    </div>
+    <div *ngIf="batch && batch.recipe && batch.recipe.notes" class="row justify-content-center ">
+            <label class="col-4 font-weight-bold">
+                Notatki (z przepisu):
+            </label>
+            <div class="col-4">
+                {{batch && batch.recipe && batch.recipe.notes || ""}}
+            </div>
+        </div>
+    <div *ngIf="batch && batch.notes" class="row justify-content-center ">
+            <label class="col-4 font-weight-bold">
+                Notatki (z warzenia):
+            </label>
+            <div class="col-4">
+                {{batch && batch.notes || ""}}
+            </div>
+        </div>
+        <div *ngIf="batch && batch.gravityBeforeBoiling" class="row justify-content-center ">
+            <label class="col-4 font-weight-bold">
+                Gęstość przed gotowaniem
+            </label>
+            <div class="col-4">
+                {{batch && batch.gravityBeforeBoiling + " BLG" || ""}}
+            </div>
+        </div>
+        <div class="row justify-content-center ">
+                <label class="col-4 font-weight-bold">
+                    Gęstość początkowa
+                </label>
+                <div class="col-4">
+                    {{batch&& batch.originalGravity + " BLG" || ""}}
+                </div>
+            </div>
+        <div *ngIf="batch && batch.finalGravity" class="row justify-content-center ">
+                <label class="col-4 font-weight-bold">
+                    Gęstość końcowa
+                </label>
+                <div class="col-4">
+                    {{batch && batch.finalGravity + " BLG" || ""}}
+                </div>
+            </div>
+        <div *ngIf="batch && batch.fermentationTime != 0" class="row justify-content-center ">
+                <label class="col-4 font-weight-bold">
+                    Czas fermentacji
+                </label>
+                <div class="col-4">
+                    {{batch && batch.fermentationTime + " dni" || ""}}
+                </div>
+            </div>
+            <div class="row justify-content-center ">
+                    <label class="col-4 font-weight-bold">
+                        Oszacowana goryczka:
+                    </label>
+                    <div class="col-4">
+                        {{batch && batch.ibu + " IBU" || ""}}
+                    </div>
+                </div>
+    <br>
+    <h3 class="col-sm-10 text-center">Składniki</h3>
+    <div class="row justify-content-center ">
+            <label class="col-4 font-weight-bold">
+                    Drożdże:
+                </label>
+                <div class="col-4">
+                    {{batch && batch.recipe && batch.recipe.yeast && batch.recipe.yeast.yeast && batch.recipe.yeast.yeast.name || ""}}
+                </div>
+            </div>
+    <div *ngIf="batch && batch.recipe && batch.recipe.maltingIngredients.length != 0" class="row">
+        <h4 for="inputMalts" class="col-sm-10">Słody</h4>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Czas wysładzania(min)</th>
+                    <th>Ilość (Kg)</th>
+                    <th>Rodzaj słodu</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let maltingIngredient of  batch && batch.recipe && batch.recipe.maltingIngredients || [] ; let i = index">
+                    <td>
+                        {{maltingIngredient.time}}
+                    </td>
+                    <td>
+                        {{maltingIngredient.amount}}
+                    </td>
+                    <td>
+                        {{maltingIngredient.malt.type}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="batch && batch.recipe && batch.recipe.hoopingIngredients.length != 0" class="row">
+        <h4 for="inputHoops" class="col-sm-10">Chmiele</h4>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Czas gotowania (min)</th>
+                    <th>Ilość (g)</th>
+                    <th>Chmiel</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let hoopingIngredient of batch && batch.recipe && batch.recipe.hoopingIngredients|| []; let i = index">
+                    <td>
+                        {{hoopingIngredient.time}}
+                    </td>
+                    <td>
+                        {{hoopingIngredient.amount}}
+                    </td>
+                    <td>
+                        {{hoopingIngredient.hoop.name}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="row" *ngIf="batch && batch.recipe && batch.recipe.additionalIngredients.length != 0">
+        <h4 for="inputMalts" class="col-sm-10">Dodatkowe składniki</h4>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Nazwa składniku</th>
+                    <th>Typ</th>
+                    <th>Ilość (g)</th>
+                    <th>Użyty do</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let additionalIngredieng of batch && batch.recipe && batch.recipe.additionalIngredients|| []; let i = index">
+                    <td>
+                        {{additionalIngredieng.name}}
+                    </td>
+                    <td>
+                        {{additionalIngredieng.type}}
+                    </td>
+                    <td>
+                        {{additionalIngredieng.amount}}
+                    </td>
+                    <td>
+                        {{additionalIngredieng.usedTo}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

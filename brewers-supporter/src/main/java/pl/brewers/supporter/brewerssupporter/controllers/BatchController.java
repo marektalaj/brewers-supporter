@@ -22,15 +22,20 @@ public class BatchController {
         return batchService.transformRecipe(brewingParamsDTO, recipeId, username);
     }
 
-    @PutMapping(value = "/{batchId}")
+    @PutMapping(value = "/edit/{batchId}")
     public Batch updateBatch(@RequestBody BrewingParamsDTO brewingParamsDTO,
                              @PathVariable Long batchId) {
         return batchService.updateBatch(brewingParamsDTO, batchId);
     }
 
     @GetMapping("/{username}")
-    public List<Batch> getRecipeByUsername(@PathVariable String username) {
+    public List<Batch> getBatchesByUsername(@PathVariable String username) {
         return batchService.getRecipeByUsername(username);
+    }
+
+    @GetMapping("/id/{batchId}")
+    public Batch getBatchById(@PathVariable String batchId) {
+        return batchService.getBatchById(Long.parseLong(batchId));
     }
 
 

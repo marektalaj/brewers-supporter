@@ -11,6 +11,8 @@ import pl.brewers.supporter.brewerssupporter.repositories.BatchRepository;
 import pl.brewers.supporter.brewerssupporter.repositories.RecipeRepository;
 import pl.brewers.supporter.brewerssupporter.repositories.UserRepository;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -37,17 +39,13 @@ public class BatchService {
         return builder
                 .gravityBeforeBoiling(brewingParams.getGravityBeforeBoiling())
                 .amountBeforeBoiling(brewingParams.getAmountBeforeBoiling())
+                .amountAfterBoiling(brewingParams.getAmount())
                 .brewingDate(ZonedDateTime.now())
                 .notes(brewingParams.getNotes())
                 .originalGravity(brewingParams.getOriginalGravity())
                 .fermentationTime(brewingParams.getFermentationTime())
-                .ibu(calculatingService.calculateIBU(
-                        HoopingDataRequestDTO.builder()
-                                .gravity(brewingParams.getOriginalGravity())
-                                .amount(brewingParams.getAmount())
-                                .hoopingIngredients(recipe.getHoopingIngredients())
-                                .build()
-                ).getIbu())
+                .ibu(recipe.getIbu())
+                .alcoholByVolume(calculateAlcohol(brewingParams.getOriginalGravity(), brewingParams.getFinalGravity()))
                 .finalGravity(brewingParams.getFinalGravity());
     }
 
@@ -55,9 +53,21 @@ public class BatchService {
         return batchRepository.findByAuthor(userRepository.findByUsername(username));
     }
 
+
+    private BigDecimal calculateAlcohol(BigDecimal originalGravity, BigDecimal finalGravity) {
+        if (finalGravity != null && originalGravity != null) {
+            return originalGravity.add(finalGravity).divide(BigDecimal.valueOf(2), 2, RoundingMode.HALF_EVEN);
+        }
+        return null;
+    }
+
     public Batch updateBatch(BrewingParamsDTO brewingParams, Long batchId) {
         Batch batch = batchRepository.findById(batchId).orElse(Batch.builder().build());
         return batchRepository.save(buildBatch(batch.toBuilder(), brewingParams, batch.getRecipe())
                 .build());
+    }
+
+    public Batch getBatchById(Long batchId) {
+        return batchRepository.findById(batchId).orElse(null);
     }
 }

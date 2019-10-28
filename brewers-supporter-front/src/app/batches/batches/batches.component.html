@@ -1,0 +1,38 @@
+<table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Nazwa przepisu</th>
+                <th>Ilość (l)</th>
+                <th>Alkohol %</th>
+                <th>IBU</th>
+                <th>Data uwarzenia</th>
+                <th>Akcja</th>
+                            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let batch of batches; let i = index">
+                <td>
+                    {{batch.recipe.name}}
+                </td>
+                <td>
+                    {{batch.amountAfterBoiling}}
+                </td>
+                <td>
+                    {{batch.alcoholByVolume || "Brak informacji niezbędnych do oszacowania"}}
+                </td>
+                <td>
+                    {{batch.ibu}}
+                </td>
+                <td>
+                    {{batch.brewingDate | date   }}
+                </td>
+                <td>
+                    <Button class="btn" [routerLink] = "['/batches', batch.id, 'details']"><fa size="lg" name="info"></fa></Button>
+                    <!-- <Button class="btn" [routerLink] = "['/batches', batch.id, 'edit'] "><fa size="lg" name="edit"></fa></Button> -->
+                    <Button class="btn" [routerLink] = "['/batches', batch.id, 'edit'] "><fa size="lg" name="edit"></fa></Button>
+                    
+                    
+                </td>
+            </tr>
+        </tbody>
+    </table>
