@@ -1,0 +1,17 @@
+.image{
+    position: relative;
+  }
+
+  #particles-js {
+    position: absolute;
+    height: 200%;
+    width: 100%;
+    background-color: #ffcc00;
+
+  }
+
+  .outer-container .table-dark {
+    z-index: 1;
+    position: relative;
+    background-color: transparent;
+  }

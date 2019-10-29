@@ -1,15 +1,16 @@
 <div class="container">
-  <h2>Korekcja wskazań refaktometru</h2>
-  <h4>Uzupełnij dane:</h4>
-  <form [formGroup]="calculateForm" (ngSubmit)="calculate()">
+    <div class="col-sm-12 justify-content-center">
+      <form [formGroup]="calculateForm" (ngSubmit)="calculate()" class="text-center">
+      <h2 class="text-center">Korekcja wskazań refaktometru</h2>
+      <h4 class="text-center">Uzupełnij dane:</h4>
     <div class="form-group">
       <label for="name">Gęstość początkowa (BLG)</label>
-      <input type="number" formControlName="originalGravity" class="form-control" required>
+      <input type="number" formControlName="originalGravity" class="form-control col-md-2 offset-md-5" min="1" max="25" required>
     </div>
 
     <div class="form-group">
       <label for="alterEgo">Gęstość końcowa (BLG)</label>
-      <input type="number" formControlName="finalGravity" class="form-control" required>
+      <input type="number" formControlName="finalGravity" class="form-control col-md-2 offset-md-5" min="1" max="25" required>
     </div>
 
     <button type="submit" class="btn btn-success">Policz!</button>
@@ -18,7 +19,7 @@
 
   <div *ngIf="result != 0.0">
     <br>
-    <h4>Wartość po korekcji:</h4>
-    <h4>{{result}} BLG</h4>
+    <h4 class="text-center">Wartość po korekcji:</h4>
+    <h4 class="text-center">{{result}} BLG</h4>
   </div>
 </div>

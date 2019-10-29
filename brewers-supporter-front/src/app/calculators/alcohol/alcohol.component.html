@@ -1,24 +1,25 @@
 <div class="container">
-    <h2>Obliczanie zawartości alkoholu</h2>
-    <h4>Uzupełnij dane:</h4>
-    <form [formGroup]="calculateForm" (ngSubmit)="calculate()">
+  <div class="col-sm-12 justify-content-center">
+    <form [formGroup]="calculateForm" (ngSubmit)="calculate()" class="text-center">
+      <h2 class="text-center">Obliczanie zawartości alkoholu</h2>
+      <h4 class="text-center">Uzupełnij dane:</h4>
       <div class="form-group">
         <label for="name">Gęstość początkowa (BLG)</label>
-        <input type="number" formControlName="originalGravity" class="form-control" required>
+        <input type="number" formControlName="originalGravity" class="form-control col-md-2 offset-md-5" required>
       </div>
 
       <div class="form-group">
-        <label for="alterEgo">Gęstość końcowa (BLG)</label>
-        <input type="number" formControlName="finalGravity" class="form-control" required>
+        <label>Gęstość końcowa (BLG)</label>
+        <input type="number" formControlName="finalGravity" class="form-control col-md-2 offset-md-5" required>
       </div>
 
       <button type="submit" class="btn btn-success">Policz!</button>
 
     </form>
-
-    <div *ngIf="result != 0.0">
-      <br>
-        <h4>Twoje piwo ma około:</h4>
-        <h4>{{result}} %</h4>
-    </div>
+  </div>
+  <div *ngIf="result != 0.0" class="col-sm-10">
+    <br>
+    <h4 class="text-center">Twoje piwo ma około:</h4>
+    <h4 class="text-center">{{result}} %</h4>
+  </div>
 </div>

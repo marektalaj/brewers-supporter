@@ -3,7 +3,7 @@
 </div>
 <div class="container justify-content-center">
     <div class="row justify-content-center">
-        <h2 class="text-center">{{batch && batch.recipe && batch.recipe.name || ""}}</h2>
+        <h2 class="text-center col-sm-10">{{batch && batch.recipe && batch.recipe.name || ""}}</h2>
     </div>
     <div *ngIf="batch && batch.amountBeforeBoiling" class="row justify-content-center ">
         <label class="col-4 font-weight-bold">

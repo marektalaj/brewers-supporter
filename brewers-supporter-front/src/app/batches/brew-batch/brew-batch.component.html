@@ -1,6 +1,6 @@
 <div class="container justify-content-center">
     <div class="row justify-content-center">
-        <h2 class="text-center">{{recipe && recipe.name || ""}}</h2>
+        <h2 class="text-center col-sm-10">{{recipe && recipe.name || ""}}</h2>
     </div>
     <div class="row justify-content-center ">
         <label class="col-4 font-weight-bold">
@@ -128,52 +128,52 @@
         </table>
     </div>
     <br>
-    <h2>Uzupełnij poniższe pola:</h2>
+    <h2 class="text-center col-sm-10">Uzupełnij poniższe pola:</h2>
     <form (ngSubmit)="brewBatch()">
         <div class="justify-content-center">
-            <div class="row">
+            <div class="row form-group">
                 <label for="inputName" class="col-sm-4">Gęstość początkowa*</label>
                 <div class="col-sm-8">
                     <input type="number" class="form-control" id="inputName" placeholder="Podaj wartość w BLG" name="og"
                         required [(ngModel)]="brewingParams.originalGravity">
                 </div>
             </div>
-            <div class="row">
+            <div class="row form-group">
                 <label for="inputAmount" class="col-sm-4">Ilość (L)*</label>
                 <div class="col-sm-8">
                     <input type="number" class="form-control" id="inputAmount" placeholder="Ilość w litrach"
                         name="amount" required [(ngModel)]="brewingParams.amount">
                 </div>
             </div>
-            <div class="row">
+            <div class="row form-group">
                 <label for="inputName" class="col-sm-4">Gęstość końcowa</label>
                 <div class="col-sm-8">
                     <input type="number" class="form-control" id="inputName" placeholder="Podaj wartość w BLG" name="fg"
                         [(ngModel)]="brewingParams.finalGravity">
                 </div>
             </div>
-            <div class="row">
+            <div class="row form-group">
                 <label for="inputAmount" class="col-sm-4">Czas fermentacji</label>
                 <div class="col-sm-8">
                     <input type="number" class="form-control" id="inputAmount" placeholder="Podaj wartość w dniach"
                         name="fermTime" [(ngModel)]="brewingParams.fermentationTime">
                 </div>
             </div>
-            <div class="row">
+            <div class="row form-group">
                 <label for="inputName" class="col-sm-4">Gęstość przed gotowaniem</label>
                 <div class="col-sm-8">
                     <input type="number" class="form-control" id="inputName" placeholder="Podaj wartość w BLG"
                         name="gravityBeforeBoiling" [(ngModel)]="brewingParams.gravityBeforeBoiling">
                 </div>
             </div>
-            <div class="row">
+            <div class="row form-group">
                 <label for="inputAmount" class="col-sm-4">Ilość przed gotowaniem (L)</label>
                 <div class="col-sm-8">
                     <input type="number" class="form-control" id="inputAmount" placeholder="Ilość w litrach"
                         name="amountBeforeBoiling" [(ngModel)]="brewingParams.amountBeforeBoiling">
                 </div>
             </div>
-            <div class="row">
+            <div class="row form-group">
                 <label for="inputName" class="col-sm-4">Notatki</label>
                 <div class="col-sm-8">
                     <textarea class="form-control" id="inputNotes" placeholder="Wpisz swoje notatki do warzenia"

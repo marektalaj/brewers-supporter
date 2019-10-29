@@ -1,34 +1,37 @@
 <div class="container">
-    <h2>Rozcieńczanie/zagęszczanie brzeczki</h2>
-    <h4>Uzupełnij dane:</h4>
-    <form [formGroup]="calculateForm" (ngSubmit)="calculate()">
-        <div class="form-group">
-            <label for="name">Ilość brzeczki (L)</label>
-            <input type="number" formControlName="amount" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="alterEgo">Zmierzona gęstość (BLG)</label>
-            <input type="number" formControlName="measured" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="alterEgo">Oczekiwana gęstość (BLG)</label>
-            <input type="number" formControlName="wanted" class="form-control" required>
-        </div>
-        <button type="submit" class="btn btn-success">Policz!</button>
-
-    </form>
-
+    <div class="col-sm-12">
+            <h2 class="text-center">Rozcieńczanie/zagęszczanie brzeczki</h2>
+            <h4 class="text-center">Uzupełnij dane:</h4>
+            <form [formGroup]="calculateForm" (ngSubmit)="calculate()" class="text-center">
+                <div class="form-group">
+                    <label for="name">Ilość brzeczki (L)</label>
+                    <input type="number" formControlName="amount" class="form-control col-md-2 offset-md-5" required>
+                </div>
+                <div class="form-group">
+                    <label for="alterEgo">Zmierzona gęstość (BLG)</label>
+                    <input type="number" formControlName="measured" class="form-control col-md-2 offset-md-5" required>
+                </div>
+                <div class="form-group">
+                    <label for="alterEgo">Oczekiwana gęstość (BLG)</label>
+                    <input type="number" formControlName="wanted" class="form-control col-md-2 offset-md-5" required>
+                </div>
+                <button type="submit" class="btn btn-success">Policz!</button>
+        
+            </form>
+        
+    
     <div *ngIf="result != 0.0">
         <div *ngIf="addWater;else other_content">
             <br>
-            <h4>Dolej:</h4>
-            <h4>{{result}} L wody.</h4>
+            <h4 class="text-center">Dolej:</h4>
+            <h4 class="text-center">{{result}} L wody.</h4>
         </div>
 
         <ng-template #other_content>
             <br>
-            <h4>Dosyp:</h4>
-            <h4>{{result}} G białego cukru.</h4>
+            <h4 class="text-center">Dosyp:</h4>
+            <h4 class="text-center">{{result}} G białego cukru.</h4>
         </ng-template>
     </div>
+</div>
 </div>

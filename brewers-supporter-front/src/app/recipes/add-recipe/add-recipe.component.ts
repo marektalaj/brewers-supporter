@@ -13,6 +13,8 @@ import { RecipeService } from 'src/app/service/recipe-service.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MaltingStage } from 'src/app/model/MaltingStage';
 
+declare var particlesJS:any;
+
 @Component({
   selector: 'app-add-recipe',
   templateUrl: './add-recipe.component.html',
@@ -85,6 +87,9 @@ export class AddRecipeComponent implements OnInit {
   }
 
   ngOnInit() {
+    particlesJS.load('particles-js', 'assets/particles.json', function() {
+      console.log('callback - particles.js config loaded');
+    });
     this.malts = this.service.malts();
     this.hoops = this.service.hoops();
     this.yeasts = this.service.yeasts();
