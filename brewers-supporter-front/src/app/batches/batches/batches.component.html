@@ -1,4 +1,6 @@
-<table class="table table-striped table-bordered">
+<div *ngIf="batches&&batches.length!=0;else other_content">
+
+    <table class="table table-striped table-bordered">
         <thead>
             <tr>
                 <th>Nazwa przepisu</th>
@@ -7,7 +9,7 @@
                 <th>IBU</th>
                 <th>Data uwarzenia</th>
                 <th>Akcja</th>
-                            </tr>
+            </tr>
         </thead>
         <tbody>
             <tr *ngFor="let batch of batches; let i = index">
@@ -27,12 +29,25 @@
                     {{batch.brewingDate | date   }}
                 </td>
                 <td>
-                    <Button class="btn" [routerLink] = "['/batches', batch.id, 'details']"><fa size="lg" name="info"></fa></Button>
-                    <Button class="btn" [routerLink] = "['/batches', batch.id, 'edit'] "><fa size="lg" name="edit"></fa></Button>
-                    <Button class="btn" (click)="deleteBatch(batch.id)"  ><fa size="lg" name="remove"></fa></Button>
-                    
-                    
+                    <Button class="btn" [routerLink]="['/batches', batch.id, 'details']" title="pokaż szczegóły">
+                        <fa size="lg" name="info"></fa>
+                    </Button>
+                    <Button class="btn" [routerLink]="['/batches', batch.id, 'edit'] " title="edytuj">
+                        <fa size="lg" name="edit"></fa>
+                    </Button>
+                    <Button class="btn" (click)="deleteBatch(batch.id)">
+                        <fa size="lg" name="remove" title="usuń"></fa>
+                    </Button>
+
+
                 </td>
             </tr>
         </tbody>
     </table>
+</div>
+
+
+<ng-template #other_content>
+    <h2 class="text-center">Jeszcze nic nie ma :( </h2>
+    <h2 class="text-center"><a routerLink="/recipes">Uwarz piwko!</a></h2>
+</ng-template>

@@ -1,5 +1,6 @@
 <div class="container">
-    <h1>Uzupełnij dane:</h1>
+    <h2>Rozcieńczanie/zagęszczanie brzeczki</h2>
+    <h4>Uzupełnij dane:</h4>
     <form [formGroup]="calculateForm" (ngSubmit)="calculate()">
         <div class="form-group">
             <label for="name">Ilość brzeczki (L)</label>
@@ -19,13 +20,15 @@
 
     <div *ngIf="result != 0.0">
         <div *ngIf="addWater;else other_content">
-            <label for="alterEgo">Dolej:</label>
-            <p>{{result}} L wody.</p>
+            <br>
+            <h4>Dolej:</h4>
+            <h4>{{result}} L wody.</h4>
         </div>
 
         <ng-template #other_content>
-            <label for="alterEgo">Dosyp:</label>
-            <p>{{result}} G białego cukru.</p>
+            <br>
+            <h4>Dosyp:</h4>
+            <h4>{{result}} G białego cukru.</h4>
         </ng-template>
     </div>
 </div>

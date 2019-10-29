@@ -1,5 +1,6 @@
 <div class="container">
-    <h1>Uzupełnij dane:</h1>
+    <h2>Obliczanie zawartości alkoholu</h2>
+    <h4>Uzupełnij dane:</h4>
     <form [formGroup]="calculateForm" (ngSubmit)="calculate()">
       <div class="form-group">
         <label for="name">Gęstość początkowa (BLG)</label>
@@ -16,7 +17,8 @@
     </form>
 
     <div *ngIf="result != 0.0">
-        <label for="alterEgo">Twoje piwo ma około:</label>
-        <p>{{result}} %</p>
+      <br>
+        <h4>Twoje piwo ma około:</h4>
+        <h4>{{result}} %</h4>
     </div>
 </div>

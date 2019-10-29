@@ -1,11 +1,12 @@
-<table class="table table-striped table-bordered">
+<div *ngIf="recipes&&recipes.length!==0;else other_content">
+    <table class="table table-striped table-bordered">
         <thead>
             <tr>
                 <th>Nazwa przepisu</th>
                 <th>Ilość (l)</th>
                 <th>Data utworzenia</th>
                 <th>Akcja</th>
-                            </tr>
+            </tr>
         </thead>
         <tbody>
             <tr *ngFor="let recipe of recipes; let i = index">
@@ -19,13 +20,23 @@
                     {{recipe.creationDateTime | date   }}
                 </td>
                 <td>
-                    <Button class="btn" [routerLink] = "['/recipes', recipe.id, 'details']"><fa size="lg" name="info"></fa></Button>
-                    <Button class="btn" [routerLink] = "['/recipes', recipe.id, 'edit'] "><fa size="lg" name="edit"></fa></Button>
-                    <Button class="btn" [routerLink] = "['/batches', recipe.id, 'brew'] "><fa size="lg" name="beer"></fa></Button>
-                    <Button class="btn" (click)="deleteRecipe(recipe.id)"  ><fa size="lg" name="remove"></fa></Button>
-                    
-                    
+                    <Button class="btn btn-primary" [routerLink]="['/batches', recipe.id, 'brew'] ">Uwarz!</Button>
+                    <Button class="btn" [routerLink]="['/recipes', recipe.id, 'details']" title="pokaż szczegóły">
+                        <fa size="lg" name="info"></fa>
+                    </Button>
+                    <Button class="btn" [routerLink]="['/recipes', recipe.id, 'edit'] " title="edytuj">
+                        <fa size="lg" name="edit"></fa>
+                    </Button>
+                    <Button class="btn" (click)="deleteRecipe(recipe.id)" title="usuń">
+                        <fa size="lg" name="remove"></fa>
+                    </Button>
                 </td>
             </tr>
         </tbody>
     </table>
+</div>
+
+<ng-template #other_content>
+    <h2 class="text-center">Jeszcze nic nie ma :( </h2>
+    <h2 class="text-center"><a routerLink="/recipes/add">Utwórz przepis!</a></h2>
+</ng-template>

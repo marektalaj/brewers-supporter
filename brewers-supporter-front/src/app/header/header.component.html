@@ -1,31 +1,35 @@
 <header>
-    <nav class ="navbar navbar-expand-md navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
 
     <div class="navbar-brand">Pomocnik piwowara domowego</div>
 
-    
-    <ul class="navbar-nav">
+
+    <ul class="navbar-nav mr-auto">
       <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/" class="nav-link">Strona główna</a></li>
       <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/recipes/add" class="nav-link">Dodaj przepis</a></li>
       <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/recipes" class="nav-link">Moje przepisy</a></li>
       <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/batches" class="nav-link">Moje warki</a></li>
       <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">Logowanie</a></li>
-      <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link">Wyloguj sie!</a></li>
-      <li><div class="col">
-        <div ngbDropdown class="d-inline-block">
-          <button class="btn btn-light" id="dropdownBasic1" ngbDropdownToggle>Kalkulatory</button>
-          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <button routerLink="/calculator/refactometer" ngbDropdownItem>Korekcja wskazań refaktometru</button>
-            <button routerLink="/calculator/alcohol" ngbDropdownItem>Zawartość alkoholu</button>
-            <button routerLink="/calculator/efficiency" ngbDropdownItem>Wydajność zacierania</button>
-            <button routerLink="/calculator/correction" ngbDropdownItem>Rozcieńczanie/zagęszczanie brzeczki</button>
+      <li>
+        <div class="col">
+          <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-light" id="dropdownBasic1" ngbDropdownToggle>Kalkulatory</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button routerLink="/calculator/refactometer" ngbDropdownItem>Korekcja wskazań refaktometru</button>
+              <button routerLink="/calculator/alcohol" ngbDropdownItem>Zawartość alkoholu</button>
+              <button routerLink="/calculator/efficiency" ngbDropdownItem>Wydajność zacierania</button>
+              <button routerLink="/calculator/correction" ngbDropdownItem>Rozcieńczanie/zagęszczanie brzeczki</button>
+            </div>
           </div>
         </div>
-      </div></li>
-    
+      </li>
+
+
     </ul>
-    
-    </nav>
-    
-    </header>
-    
+    <ul class="navbar-nav pull-right">
+      <li class="navbar-right"><a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link">Wyloguj
+          sie</a></li>
+    </ul>
+  </nav>
+
+</header>
