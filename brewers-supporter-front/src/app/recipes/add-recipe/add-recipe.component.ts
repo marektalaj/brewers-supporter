@@ -127,7 +127,7 @@ export class AddRecipeComponent implements OnInit {
           this.router.navigate(['recipes', data.id, 'details']);
         },
         error => {
-          window.alert("nie udalo sie zapisać")
+          window.alert("Nie udalo sie zapisać!")
         }
       )
     }
