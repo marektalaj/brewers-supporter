@@ -18,7 +18,7 @@ public class Hoop {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private HoopType type;
+    private String type;
     private String country;
     private String name;
     private BigDecimal alphaAcid;

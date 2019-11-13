@@ -17,7 +17,7 @@ public class Yeast {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private YeastType type;
+    private String type;
     private String name;
     private String country;
 }
