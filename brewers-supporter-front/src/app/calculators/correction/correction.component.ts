@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CalculatingService } from 'src/app/service/calculating-service.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-correction',
@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./correction.component.css']
 })
 export class CorrectionComponent implements OnInit {
+  submitted = false;
   calculateForm: FormGroup;
   result = 0.0;
   addWater = true;
@@ -17,15 +18,24 @@ export class CorrectionComponent implements OnInit {
 
   ngOnInit() {
     this.calculateForm = this.formBuilder.group({
-      amount: null,
-      measured: null,
-      wanted: null
+      amount: [null, [Validators.required, Validators.min(1)]],
+      measured: [null, [Validators.required, Validators.min(1), Validators.max(25)]],
+      wanted: [null, [Validators.required, Validators.min(1), Validators.max(25)]]
     });
   }
 
   get form() { return this.calculateForm.controls; }
 
+
+
   calculate(){
+
+    this.submitted = true;
+
+    if(this.calculateForm.invalid){
+      return;
+    }
+    
     if(this.form.measured.value < this.form.wanted.value){
       this.addWater = false;
     } else {

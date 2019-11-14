@@ -1,37 +1,55 @@
-<div class="container" style="margin-top: 5%;">
-    <div class="col-sm-12">
+<div class="row align-items-center justify-content-center" style="margin-top: 5%;">
+    <div class="col-sm-6 form-group-lg">
+
+        <form style="background-color:#E2F1AF;padding-bottom: 5%; padding-top: 5%;" [formGroup]="calculateForm" (ngSubmit)="calculate()" class="text-center">
             <h2 class="text-center">Rozcieńczanie/zagęszczanie brzeczki</h2>
             <h4 class="text-center">Uzupełnij dane:</h4>
-            <form [formGroup]="calculateForm" (ngSubmit)="calculate()" class="text-center">
-                <div class="form-group">
-                    <label for="name">Ilość brzeczki (L)</label>
-                    <input type="number" formControlName="amount" class="form-control col-md-2 offset-md-5" required>
+            <div class="form-group">
+                <label for="name">Ilość brzeczki (L)</label>
+                <input type="number" formControlName="amount" class="form-control col-md-2 offset-md-5" required min="1"
+                    [ngClass]="{ 'is-invalid': submitted && form.amount.errors }" />
+                <div *ngIf="submitted && form.amount.errors" class="invalid-feedback">
+                    <div *ngIf="form.amount.errors.required">Ilość brzeczki jest wymagana</div>
+                    <div *ngIf="form.amount.errors.min">Objetość brzeczki musi wynosić minimalnie 1 BLG</div>
                 </div>
-                <div class="form-group">
-                    <label for="alterEgo">Zmierzona gęstość (BLG)</label>
-                    <input type="number" formControlName="measured" class="form-control col-md-2 offset-md-5" required>
+            </div>
+            <div class="form-group">
+                <label for="alterEgo">Zmierzona gęstość (BLG)</label>
+                <input type="number" formControlName="measured" class="form-control col-md-2 offset-md-5" required
+                    min="1" max="25" [ngClass]="{ 'is-invalid': submitted && form.measured.errors }" />
+                <div *ngIf="submitted && form.measured.errors" class="invalid-feedback">
+                    <div *ngIf="form.measured.errors.required">Gęstość jest wymagana</div>
+                    <div *ngIf="form.measured.errors.min">Gęstość brzeczki musi wynosić minimalnie 1 BLG</div>
+                    <div *ngIf="form.measured.errors.max">Gęstość brzeczki może wynosić maksymalnie 25 BLG</div>
                 </div>
-                <div class="form-group">
-                    <label for="alterEgo">Oczekiwana gęstość (BLG)</label>
-                    <input type="number" formControlName="wanted" class="form-control col-md-2 offset-md-5" required>
+            </div>
+            <div class="form-group">
+                <label for="alterEgo">Oczekiwana gęstość (BLG)</label>
+                <input type="number" formControlName="wanted" class="form-control col-md-2 offset-md-5" required min="1"
+                    max="25" [ngClass]="{ 'is-invalid': submitted && form.wanted.errors }" />
+                <div *ngIf="submitted && form.wanted.errors" class="invalid-feedback">
+                    <div *ngIf="form.wanted.errors.required">Gęstość jest wymagana</div>
+                    <div *ngIf="form.wanted.errors.min">Gęstość brzeczki musi wynosić minimalnie 1 BLG</div>
+                    <div *ngIf="form.wanted.errors.max">Gęstość brzeczki może wynosić maksymalnie 25 BLG</div>
                 </div>
-                <button type="submit" class="btn btn-success">Policz!</button>
-        
-            </form>
-        
-    
-    <div *ngIf="result != 0.0">
-        <div *ngIf="addWater;else other_content">
-            <br>
-            <h4 class="text-center">Dolej:</h4>
-            <h4 class="text-center">{{result}} L wody.</h4>
-        </div>
+            </div>
+            <button type="submit" class="btn btn-success">Policz!</button>
 
-        <ng-template #other_content>
-            <br>
-            <h4 class="text-center">Dosyp:</h4>
-            <h4 class="text-center">{{result}} G białego cukru.</h4>
-        </ng-template>
+        </form>
+
+
+        <div *ngIf="result != 0.0">
+            <div *ngIf="addWater;else other_content">
+                <br>
+                <h4 class="text-center">Dolej:</h4>
+                <h4 class="text-center">{{result}} L wody.</h4>
+            </div>
+
+            <ng-template #other_content>
+                <br>
+                <h4 class="text-center">Dosyp:</h4>
+                <h4 class="text-center">{{result}} G białego cukru.</h4>
+            </ng-template>
+        </div>
     </div>
-</div>
 </div>

@@ -41,8 +41,7 @@ export class LoginComponent implements OnInit {
         this.invalidLogin = false;
       },
       error => {
-        this.invalidLogin = true;
-
+        window.alert("Niepoprawny login lub hasło.")
       }
     )
     );
