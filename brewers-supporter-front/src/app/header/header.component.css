@@ -1,3 +1,6 @@
 .navbar-right li a {
     text-align: right;
   }
+.navbar-custom {
+  background-color: #FBFCFF;
+}

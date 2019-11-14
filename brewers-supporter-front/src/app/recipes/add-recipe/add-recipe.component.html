@@ -1,225 +1,228 @@
-
-<div class="row justify-content-center">
-
-    <form (ngSubmit)="saveRecipe()">
+<div class="row align-items-center justify-content-center">
+    <div class="col-sm-10 form-group-lg">
+        <form style="background-color:#E2F1AF;padding-bottom: 5%; padding-top: 5%;" class="form-group" (ngSubmit)="saveRecipe()">
             <br>
             <h2 class="col-sm-10 text-center">Wprowadź swój przepis</h2>
             <br>
-        <div class="form-group">
-            <label for="inputName" class="col-sm-2 col-form-label">Nazwa przepisu</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputName" placeholder="Nazwa" name="name"
-                    [(ngModel)]="recipe.name">
+            <div class="form-group">
+                <label for="inputName" class="col-sm-2 col-form-label">Nazwa przepisu</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputName" placeholder="Nazwa" name="name"
+                        [(ngModel)]="recipe.name">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="inputAmount" class="col-sm-2 col-form-label">Ilość (L)</label>
-            <div class="col-sm-10">
-                <input type="number" class="form-control" id="inputAmount" placeholder="Ilość" name="amount"
-                    [(ngModel)]="recipe.amount">
+            <div class="form-group">
+                <label for="inputAmount" class="col-sm-2 col-form-label">Ilość (L)</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="inputAmount" placeholder="Ilość" name="amount"
+                        [(ngModel)]="recipe.amount">
+                </div>
             </div>
-        </div>
-        <div>
-            <h4 for="inputMalts" class="col-sm-10 text-center">Etapy zacierania</h4>
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr class="d-flex">
-                        <th class="col-4">Czas wysładzania(min)</th>
-                        <th class="col-4">Temperatura (°C)</th>
-                        <th class="col-4">Akcja</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="d-flex" *ngFor="let maltingStage of maltingStages; let i = index">
-                        <td class="col-4">
-                            {{maltingStage.time}}
-                        </td>
-                        <td class="col-4">
-                            {{maltingStage.temperature}}
-                        </td>
-                        <td class="col-4">
-                            <button class="btn btn-default" type="button"
-                                (click)="deleteMaltingStageValue(i)">Usuń</button>
-                        </td>
-                    </tr>
-                    <tr class="d-flex">
-                        <td class="col-4">
-                            <input class="form-control" type="number" id="newAttributeName"
-                                [(ngModel)]="newMaltingStage.time" name="newAttributeName" />
-                        </td>
-                        <td class="col-4">
-                            <input class="form-control" type="number" id="newAttributeName"
-                                [(ngModel)]="newMaltingStage.temperature" name="newAttributeName" />
-                        </td>
-                        <td class="col-4">
-                            <button class="btn btn-default" type="button"
-                                (click)="addMaltingStageValue()">Dodaj</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div>
-            <h4 for="inputMalts" class="col-sm-10 text-center">Słody</h4>
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr class="d-flex">
-                        <th class="col-4">Ilość (Kg)</th>
-                        <th class="col-4">Rodzaj słodu</th>
-                        <th class="col-4">Akcja</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="d-flex" *ngFor="let maltingIngredient of maltingIngredients; let i = index">
-                        <td class="col-4">
-                            {{maltingIngredient.amount}}
-                        </td>
-                        <td class="col-4">
-                            {{maltingIngredient.malt.type}}
-                        </td>
-                        <td class="col-4">
-                            <button class="btn btn-default" type="button" (click)="deleteFieldValue(i)">Usuń</button>
-                        </td>
-                    </tr>
-                    <tr class="d-flex">
-                        <td class="col-4">
-                            <input class="form-control" type="number" id="newAttributeName"
-                                [(ngModel)]="newMaltingIngredient.amount" name="newAttributeName" />
-                        </td>
-                        <td class="col-4">
-                            <ng-select [items]="malts | async" bindLabel="type" name="malt"
-                                [(ngModel)]="newMaltingIngredient.malt">
-                            </ng-select>
-                        </td>
-                        <td class="col-4">
-                            <button class="btn btn-default" type="button" (click)="addFieldValue()">Dodaj</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div>
-            <h4 for="inputMalts" class="col-sm-10 text-center">Chmiele</h4>
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr class="d-flex">
-                        <th class="col-3">Czas gotowania (min)</th>
-                        <th class="col-3">Ilość (g)</th>
-                        <th class="col-3">Chmiel</th>
-                        <th class="col-3">Akcja</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="d-flex" *ngFor="let hoopingIngredient of hoopingIngredients; let i = index">
-                        <td class="col-3">
-                            {{hoopingIngredient.time}}
-                        </td>
-                        <td class="col-3">
-                            {{hoopingIngredient.amount}}
-                        </td>
-                        <td class="col-3">
-                            {{hoopingIngredient.hoop.name}}
-                        </td>
-                        <td class="col-3">
-                            <button class="btn btn-default" type="button"
-                                (click)="deleteFieldValueHoop(i)">Usuń</button>
-                        </td>
-                    </tr>
-                    <tr class="d-flex">
-                        <td class="col-3">
-                            <input class="form-control" type="number" id="newAttributeCode"
-                                [(ngModel)]="newHoopingIngredient.time" name="newAttributeCode" />
-                        </td>
-                        <td class="col-3">
-                            <input class="form-control" type="number" id="newAttributeName"
-                                [(ngModel)]="newHoopingIngredient.amount" name="newAttributeName" />
-                        </td>
-                        <td class="col-3">
-                            <ng-select [items]="hoops | async" bindLabel="name" name="hoop"
-                                [(ngModel)]="newHoopingIngredient.hoop">
-                            </ng-select>
-                        </td>
-                        <td class="col-3">
-                            <button class="btn btn-default" type="button" (click)="addFieldValueHoop()">Dodaj</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div>
-            <h4 for="inputMalts" class="col-sm-10 text-center">Dodatkowe składniki</h4>
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr class="d-flex">
-                        <th class="col-2">Nazwa składniku</th>
-                        <th class="col-2">Typ</th>
-                        <th class="col-2">Ilość (g)</th>
-                        <th class="col-3">Użyty do</th>
-                        <th class="col-3">Akcja</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="d-flex" *ngFor="let additionalIngredieng of additionalIngredients; let i = index">
-                        <td class="col-2">
-                            {{additionalIngredieng.name}}
-                        </td>
-                        <td class="col-2">
-                            {{additionalIngredieng.type}}
-                        </td>
-                        <td class="col-2">
-                            {{additionalIngredieng.amount}}
-                        </td>
-                        <td class="col-3">
-                            {{additionalIngredieng.usedTo}}
-                        </td>
-                        <td class="col-3">
-                            <button class="btn btn-default" type="button"
-                                (click)="deleteFieldValueAditional(i)">Usuń</button>
-                        </td>
-                    </tr>
-                    <tr class="d-flex">
-                        <td class="col-2">
-                            <input class="form-control" type="text" id="newAttributeCode"
-                                [(ngModel)]="newAdditionalIngredient.name" name="newAttributeCode" />
-                        </td>
-                        <td class="col-2">
-                            <input class="form-control" type="text" id="newAttributeName"
-                                [(ngModel)]="newAdditionalIngredient.type" name="newAttributeName" />
-                        </td>
-                        <td class="col-2">
-                            <input class="form-control" type="number" id="newAttributeName"
-                                [(ngModel)]="newAdditionalIngredient.amount" name="newAttributeName" />
-                        </td>
-                        <td class="col-3">
-                            <input class="form-control" type="text" id="newAttributeName"
-                                [(ngModel)]="newAdditionalIngredient.usedTo" name="newAttributeName" />
-                        </td>
-                        <td class="col-3">
-                            <button class="btn btn-default" type="button"
-                                (click)="addFieldValueAditional()">Dodaj</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="form-group">
-            <label for="inputName" class="col-sm-2 col-form-label">Wybierz drożdże</label>
-            <div class="col-sm-10">
-                <ng-select [items]="yeasts | async" bindLabel="name" name="yeast" [(ngModel)]="yeastAsIngredient.yeast">
-                </ng-select>
+            <div>
+                <h4 for="inputMalts" class="col-sm-10 text-center">Etapy zacierania</h4>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr class="d-flex">
+                            <th class="col-4">Czas wysładzania(min)</th>
+                            <th class="col-4">Temperatura (°C)</th>
+                            <th class="col-4">Akcja</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="d-flex" *ngFor="let maltingStage of maltingStages; let i = index">
+                            <td class="col-4">
+                                {{maltingStage.time}}
+                            </td>
+                            <td class="col-4">
+                                {{maltingStage.temperature}}
+                            </td>
+                            <td class="col-4">
+                                <button class="btn btn-default" type="button"
+                                    (click)="deleteMaltingStageValue(i)">Usuń</button>
+                            </td>
+                        </tr>
+                        <tr class="d-flex">
+                            <td class="col-4">
+                                <input class="form-control" type="number" id="newAttributeName"
+                                    [(ngModel)]="newMaltingStage.time" name="newAttributeName" />
+                            </td>
+                            <td class="col-4">
+                                <input class="form-control" type="number" id="newAttributeName"
+                                    [(ngModel)]="newMaltingStage.temperature" name="newAttributeName" />
+                            </td>
+                            <td class="col-4">
+                                <button class="btn btn-default" type="button"
+                                    (click)="addMaltingStageValue()">Dodaj</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="inputName" class="col-sm-2 col-form-label">Notatki</label>
-            <div class="col-sm-10">
-                <textarea class="form-control" id="inputNotes" placeholder="Wpisz swoje notatki do przepisu"
-                    name="notes" [(ngModel)]="recipe.notes"></textarea>
+            <div>
+                <h4 for="inputMalts" class="col-sm-10 text-center">Słody</h4>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr class="d-flex">
+                            <th class="col-4">Ilość (Kg)</th>
+                            <th class="col-4">Rodzaj słodu</th>
+                            <th class="col-4">Akcja</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="d-flex" *ngFor="let maltingIngredient of maltingIngredients; let i = index">
+                            <td class="col-4">
+                                {{maltingIngredient.amount}}
+                            </td>
+                            <td class="col-4">
+                                {{maltingIngredient.malt.type}}
+                            </td>
+                            <td class="col-4">
+                                <button class="btn btn-default" type="button"
+                                    (click)="deleteFieldValue(i)">Usuń</button>
+                            </td>
+                        </tr>
+                        <tr class="d-flex">
+                            <td class="col-4">
+                                <input class="form-control" type="number" id="newAttributeName"
+                                    [(ngModel)]="newMaltingIngredient.amount" name="newAttributeName" />
+                            </td>
+                            <td class="col-4">
+                                <ng-select [items]="malts | async" bindLabel="type" name="malt"
+                                    [(ngModel)]="newMaltingIngredient.malt">
+                                </ng-select>
+                            </td>
+                            <td class="col-4">
+                                <button class="btn btn-default" type="button" (click)="addFieldValue()">Dodaj</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary">Zapisz</button>
+            <div>
+                <h4 for="inputMalts" class="col-sm-10 text-center">Chmiele</h4>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr class="d-flex">
+                            <th class="col-3">Czas gotowania (min)</th>
+                            <th class="col-3">Ilość (g)</th>
+                            <th class="col-3">Chmiel</th>
+                            <th class="col-3">Akcja</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="d-flex" *ngFor="let hoopingIngredient of hoopingIngredients; let i = index">
+                            <td class="col-3">
+                                {{hoopingIngredient.time}}
+                            </td>
+                            <td class="col-3">
+                                {{hoopingIngredient.amount}}
+                            </td>
+                            <td class="col-3">
+                                {{hoopingIngredient.hoop.name}}
+                            </td>
+                            <td class="col-3">
+                                <button class="btn btn-default" type="button"
+                                    (click)="deleteFieldValueHoop(i)">Usuń</button>
+                            </td>
+                        </tr>
+                        <tr class="d-flex">
+                            <td class="col-3">
+                                <input class="form-control" type="number" id="newAttributeCode"
+                                    [(ngModel)]="newHoopingIngredient.time" name="newAttributeCode" />
+                            </td>
+                            <td class="col-3">
+                                <input class="form-control" type="number" id="newAttributeName"
+                                    [(ngModel)]="newHoopingIngredient.amount" name="newAttributeName" />
+                            </td>
+                            <td class="col-3">
+                                <ng-select [items]="hoops | async" bindLabel="name" name="hoop"
+                                    [(ngModel)]="newHoopingIngredient.hoop">
+                                </ng-select>
+                            </td>
+                            <td class="col-3">
+                                <button class="btn btn-default" type="button"
+                                    (click)="addFieldValueHoop()">Dodaj</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </div>
-    </form>
+            <div>
+                <h4 for="inputMalts" class="col-sm-10 text-center">Dodatkowe składniki</h4>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr class="d-flex">
+                            <th class="col-2">Nazwa składniku</th>
+                            <th class="col-2">Typ</th>
+                            <th class="col-2">Ilość (g)</th>
+                            <th class="col-3">Użyty do</th>
+                            <th class="col-3">Akcja</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="d-flex" *ngFor="let additionalIngredieng of additionalIngredients; let i = index">
+                            <td class="col-2">
+                                {{additionalIngredieng.name}}
+                            </td>
+                            <td class="col-2">
+                                {{additionalIngredieng.type}}
+                            </td>
+                            <td class="col-2">
+                                {{additionalIngredieng.amount}}
+                            </td>
+                            <td class="col-3">
+                                {{additionalIngredieng.usedTo}}
+                            </td>
+                            <td class="col-3">
+                                <button class="btn btn-default" type="button"
+                                    (click)="deleteFieldValueAditional(i)">Usuń</button>
+                            </td>
+                        </tr>
+                        <tr class="d-flex">
+                            <td class="col-2">
+                                <input class="form-control" type="text" id="newAttributeCode"
+                                    [(ngModel)]="newAdditionalIngredient.name" name="newAttributeCode" />
+                            </td>
+                            <td class="col-2">
+                                <input class="form-control" type="text" id="newAttributeName"
+                                    [(ngModel)]="newAdditionalIngredient.type" name="newAttributeName" />
+                            </td>
+                            <td class="col-2">
+                                <input class="form-control" type="number" id="newAttributeName"
+                                    [(ngModel)]="newAdditionalIngredient.amount" name="newAttributeName" />
+                            </td>
+                            <td class="col-3">
+                                <input class="form-control" type="text" id="newAttributeName"
+                                    [(ngModel)]="newAdditionalIngredient.usedTo" name="newAttributeName" />
+                            </td>
+                            <td class="col-3">
+                                <button class="btn btn-default" type="button"
+                                    (click)="addFieldValueAditional()">Dodaj</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="form-group">
+                <label for="inputName" class="col-sm-2 col-form-label">Wybierz drożdże</label>
+                <div class="col-sm-10">
+                    <ng-select [items]="yeasts | async" bindLabel="name" name="yeast"
+                        [(ngModel)]="yeastAsIngredient.yeast">
+                    </ng-select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputName" class="col-sm-2 col-form-label">Notatki</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" id="inputNotes" placeholder="Wpisz swoje notatki do przepisu"
+                        name="notes" [(ngModel)]="recipe.notes"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Zapisz</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
