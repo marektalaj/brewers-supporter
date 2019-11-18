@@ -1,43 +1,45 @@
 <div class="row align-items-center justify-content-center" style="margin-top: 5%;">
     <div class="col-sm-6 form-group-lg">
-      <form style="background-color:#E2F1AF;padding-bottom: 5%; padding-top: 5%;" [formGroup]="calculateForm" (ngSubmit)="calculate()" class="text-center">
-        <h2 class="text-center">Wydajność zacierania</h2>
-        <h4 class="text-center">Uzupełnij dane:</h4>
-        <div class="form-group">
-          <label for="name">Oczekiwany poziom nasycenia</label>
-          <input type="number" formControlName="carbon" class="form-control col-md-2 offset-md-5" required min="0"
-          required [ngClass]="{ 'is-invalid': submitted && form.carbon.errors }" />
-          <div *ngIf="submitted && form.carbon.errors" class="invalid-feedback">
-            <div *ngIf="form.carbon.errors.required">Oczekiwany poziom nasycenia jest wymagany</div>
-            <div *ngIf="form.carbon.errors.min">Objetość brzeczki musi wynosić minimalnie 0 BLG</div>
-          </div>
-        </div>
-        <div class="form-group">
-            <label for="name">Ilość brzeczki (L)</label>
-            <input type="number" formControlName="amount" class="form-control col-md-2 offset-md-5" required min="1"
-            required [ngClass]="{ 'is-invalid': submitted && form.amount.errors }" />
-            <div *ngIf="submitted && form.amount.errors" class="invalid-feedback">
-              <div *ngIf="form.amount.errors.required">Ilość brzeczki jest wymagana</div>
-              <div *ngIf="form.amount.errors.min">Ilość brzeczki musi wynosić minimalnie 1 litr</div>
+        <form style="background-color:#E2F1AF;padding-bottom: 5%; padding-top: 5%;" [formGroup]="calculateForm"
+            (ngSubmit)="calculate()" class="text-center">
+            <h2 class="text-center">Wydajność zacierania</h2>
+            <h4 class="text-center">Uzupełnij dane:</h4>
+            <div class="form-group">
+                <label for="name">Oczekiwany poziom nasycenia</label>
+                <input type="number" formControlName="carbon" class="form-control col-md-2 offset-md-5" required min="0"
+                    required [ngClass]="{ 'is-invalid': submitted && form.carbon.errors }" />
+                <div *ngIf="submitted && form.carbon.errors" class="invalid-feedback">
+                    <div *ngIf="form.carbon.errors.required">Oczekiwany poziom nasycenia jest wymagany</div>
+                    <div *ngIf="form.carbon.errors.min">Objetość brzeczki musi wynosić minimalnie 0 BLG</div>
+                </div>
             </div>
-          </div>
-        <div class="form-group">
-          <label for="alterEgo">Temperatura (stopnie Celciusza)</label>
-          <input type="number" formControlName="temperature" class="form-control col-md-2 offset-md-5" required min="1"
-          required [ngClass]="{ 'is-invalid': submitted && form.temperature.errors }" />
-          <div *ngIf="submitted && form.temperature.errors" class="invalid-feedback">
-            <div *ngIf="form.temperature.errors.required">Temperatura jest wymagana</div>
-            <div *ngIf="form.temperature.errors.min">Temperatura musi wynosić minimalnie 1 stopień celciusza</div>
-          </div>
-        </div>
-        <button type="submit" class="btn btn-success">Policz!</button>
-  
-      </form>
-  
-      <div *ngIf="result != 0.0">
-        <br>
-        <h4 class="text-center">Musisz dodać:</h4>
-        <h4 class="text-center">{{result}} gram</h4>
-      </div>
+            <div class="form-group">
+                <label for="name">Ilość brzeczki (L)</label>
+                <input type="number" formControlName="amount" class="form-control col-md-2 offset-md-5" required min="1"
+                    required [ngClass]="{ 'is-invalid': submitted && form.amount.errors }" />
+                <div *ngIf="submitted && form.amount.errors" class="invalid-feedback">
+                    <div *ngIf="form.amount.errors.required">Ilość brzeczki jest wymagana</div>
+                    <div *ngIf="form.amount.errors.min">Ilość brzeczki musi wynosić minimalnie 1 litr</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="alterEgo">Temperatura (stopnie Celciusza)</label>
+                <input type="number" formControlName="temperature" class="form-control col-md-2 offset-md-5" required
+                    min="1" required [ngClass]="{ 'is-invalid': submitted && form.temperature.errors }" />
+                <div *ngIf="submitted && form.temperature.errors" class="invalid-feedback">
+                    <div *ngIf="form.temperature.errors.required">Temperatura jest wymagana</div>
+                    <div *ngIf="form.temperature.errors.min">Temperatura musi wynosić minimalnie 1 stopień celciusza
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success">Policz!</button>
+            <div *ngIf="result != 0.0">
+                <br>
+                <h4 class="text-center">Musisz dodać:</h4>
+                <h4 class="text-center">{{result}} gram</h4>
+            </div>
+        </form>
+
+
     </div>
-  </div>
+</div>

@@ -18,27 +18,32 @@ export class RecipesComponent implements OnInit {
     this.loadRecipes();
   }
 
-  loadRecipes(){
+  loadRecipes() {
     this.recipeService.getRecipeByUsername(sessionStorage.getItem('username')).subscribe(
       data => {
         this.recipes = data;
       },
       error => {
-        window.alert("nie udało się wczytac" );
+        window.alert("nie udało się wczytac");
       }
     )
   }
 
-  goToDetails(id){
+  goToDetails(id) {
     this.router.navigate(['recipes/details', id]);
   }
 
-  deleteRecipe(id){
+  deleteRecipe(id) {
     this.recipeService.deleteRecipe(id).subscribe(
       data => {
-        this.loadRecipes();
+        if (data == true) {
+          this.loadRecipes();
+
+        }else{
+          window.alert("Nie można usunąć przepisu ponieważ istnieją na jego podstawie uwarzone piwa");
+        }
       }
     );
-    
+
   }
 }

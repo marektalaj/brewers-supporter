@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.brewers.supporter.brewerssupporter.dto.HoopingDataRequestDTO;
 import pl.brewers.supporter.brewerssupporter.dto.MashDataRequestDTO;
 import pl.brewers.supporter.brewerssupporter.model.Recipe;
+import pl.brewers.supporter.brewerssupporter.repositories.BatchRepository;
 import pl.brewers.supporter.brewerssupporter.repositories.RecipeRepository;
 import pl.brewers.supporter.brewerssupporter.repositories.UserRepository;
 
@@ -18,6 +19,7 @@ public class RecipeService {
     private final UserRepository userRepository;
     private final JwtUserDetailsService userService;
     private final CalculatingService calculatingService;
+    private final BatchRepository batchRepository;
 
     public Recipe saveRecipe(Recipe recipe, String username) {
         setRecipeNeededVariables(recipe, username);
@@ -45,7 +47,12 @@ public class RecipeService {
         return recipeRepository.findByAuthor(userRepository.findByUsername(username));
     }
 
-    public void deleteRecipe(Long recipeId) {
-        recipeRepository.deleteById(recipeId);
+    public boolean deleteRecipe(Long recipeId) {
+        if(batchRepository.findByRecipe(recipeRepository.findById(recipeId).get()).isPresent()){
+            return false;
+        }else{
+            recipeRepository.deleteById(recipeId);
+            return true;
+        }
     }
 }

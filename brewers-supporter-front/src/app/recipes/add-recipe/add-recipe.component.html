@@ -89,6 +89,9 @@
                             <td class="col-4">
                                 <ng-select [items]="malts | async" bindLabel="type" name="malt"
                                     [(ngModel)]="newMaltingIngredient.malt">
+                                    <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                                        <span>{{item.type}},  {{item.producer}}</span>
+                                      </ng-template>
                                 </ng-select>
                             </td>
                             <td class="col-4">
