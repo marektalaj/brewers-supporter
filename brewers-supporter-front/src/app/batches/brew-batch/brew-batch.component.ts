@@ -49,6 +49,10 @@ export class BrewBatchComponent implements OnInit {
   }
 
   brewBatch() {
+    if (!this.brewingParams.originalGravity || !this.brewingParams.amount) {
+      window.alert('Usupełnij wymagane pola');
+      return;
+    }
     if (!this.editing) {
       this.batchService.saveBatch(this.recipe.id, sessionStorage.getItem('username'), this.brewingParams).subscribe(
         data => {
