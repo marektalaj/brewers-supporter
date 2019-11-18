@@ -87,9 +87,6 @@ export class AddRecipeComponent implements OnInit {
   }
 
   ngOnInit() {
-    particlesJS.load('particles-js', 'assets/particles.json', function() {
-      console.log('callback - particles.js config loaded');
-    });
     this.malts = this.service.malts();
     this.hoops = this.service.hoops();
     this.yeasts = this.service.yeasts();
@@ -110,6 +107,10 @@ export class AddRecipeComponent implements OnInit {
 
 
   saveRecipe() {
+    if(!this.recipe.name||!this.recipe.amount){
+      window.alert('Uzupenij wymagane pola!')
+      return;
+    }
     this.recipe.yeast = this.yeastAsIngredient;
     if (this.toEdit) {
       this.recipeService.updateRecipe(this.recipe, sessionStorage.getItem('username')).subscribe(
