@@ -24,6 +24,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { BrewBatchComponent } from './batches/brew-batch/brew-batch.component';
 import { BatchesComponent } from './batches/batches/batches.component';
 import { BatchDetailsComponent } from './batches/batch-details/batch-details.component';
+import { PrimingComponent } from './calculators/priming/priming.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { BatchDetailsComponent } from './batches/batch-details/batch-details.com
     BrewBatchComponent,
     BatchesComponent,
     BatchDetailsComponent,
+    PrimingComponent,
   ],
   imports: [
     HttpClientModule,
