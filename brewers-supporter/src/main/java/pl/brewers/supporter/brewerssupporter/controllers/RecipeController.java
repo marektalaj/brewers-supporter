@@ -25,8 +25,8 @@ public class RecipeController {
     }
 
     @DeleteMapping(value = "/delete/{recipeId}")
-    public void deleteRecipe(@PathVariable Long recipeId){
-        recipeService.deleteRecipe(recipeId);
+    public boolean deleteRecipe(@PathVariable Long recipeId){
+        return recipeService.deleteRecipe(recipeId);
     }
 
     @GetMapping("/id/{id}")

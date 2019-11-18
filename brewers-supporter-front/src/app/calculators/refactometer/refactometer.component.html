@@ -1,6 +1,7 @@
 <div class="row align-items-center justify-content-center" style="margin-top: 5%;">
   <div class="col-sm-6 form-group-lg">
-    <form style="background-color:#E2F1AF;padding-bottom: 5%; padding-top: 5%;" [formGroup]="calculateForm" (ngSubmit)="calculate()" class="text-center">
+    <form style="background-color:#E2F1AF;padding-bottom: 5%; padding-top: 5%;" [formGroup]="calculateForm"
+      (ngSubmit)="calculate()" class="text-center">
       <h2 class="text-center">Korekcja wskazań refaktometru</h2>
       <h4 class="text-center">Uzupełnij dane:</h4>
       <div class="form-group">
@@ -29,12 +30,13 @@
       <div class="form-group">
         <button type="submit" class="btn btn-success">Policz!</button>
       </div>
+      <div *ngIf="result != 0.0">
+        <br>
+        <h4 class="text-center">Wartość po korekcji:</h4>
+        <h4 class="text-center">{{result}} BLG</h4>
+      </div>
     </form>
 
-    <div *ngIf="result != 0.0">
-      <br>
-      <h4 class="text-center">Wartość po korekcji:</h4>
-      <h4 class="text-center">{{result}} BLG</h4>
-    </div>
+
   </div>
 </div>
