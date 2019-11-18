@@ -15,6 +15,7 @@ import { RecipeDetailsComponent } from './recipes/recipe-details/recipe-details.
 import { BrewBatchComponent } from './batches/brew-batch/brew-batch.component';
 import { BatchesComponent } from './batches/batches/batches.component';
 import { BatchDetailsComponent } from './batches/batch-details/batch-details.component';
+import { PrimingComponent } from './calculators/priming/priming.component';
 
 
 
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'calculator/efficiency', component: EfficiencyComponent},
   { path: 'calculator/correction', component: CorrectionComponent},
   { path: 'calculator/alcohol', component: AlcoholComponent},
+  { path: 'calculator/priming', component: PrimingComponent},
 ];
 
 @NgModule({

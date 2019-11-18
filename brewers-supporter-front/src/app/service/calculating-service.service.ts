@@ -25,4 +25,8 @@ baseUrl: string = 'http://localhost:8080/calculator/';
     return this.httpClient.post<number>(this.baseUrl + 'efficiency', {amount, gravity, maltAmount} );
   }
 
+  primingSugar(carbonDioxide, amount, temperature){
+    return this.httpClient.post<number>(this.baseUrl + 'priming', {carbonDioxide, amount, temperature} );
+  }
+
 }

@@ -113,4 +113,10 @@ public class CalculatingServiceTest {
                 .build();
 
     }
+
+    @Test
+    public void checkCalculationPrimingSugar(){
+        Assert.assertEquals(BigDecimal.valueOf(91).doubleValue(), calculatingService.calculatePrimingSugar(BigDecimal.valueOf(2), BigDecimal.valueOf(20), BigDecimal.valueOf(20)), 1);
+
+    }
 }

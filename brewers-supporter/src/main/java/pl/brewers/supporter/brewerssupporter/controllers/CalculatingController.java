@@ -45,4 +45,9 @@ public class CalculatingController {
     public HoopingDataResponseDTO mashData(@RequestBody HoopingDataRequestDTO data) {
         return calculatingService.calculateIBU(data);
     }
+
+    @PostMapping(value = "priming")
+    public double primingSugar(@RequestBody PrimingDataRequestDTO data) {
+        return calculatingService.calculatePrimingSugar(BigDecimal.valueOf(data.getCarbonDioxide()),BigDecimal.valueOf(data.getAmount()), BigDecimal.valueOf(data.getTemperature()));
+    }
 }

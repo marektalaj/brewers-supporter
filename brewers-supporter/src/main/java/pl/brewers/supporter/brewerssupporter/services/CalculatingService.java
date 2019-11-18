@@ -92,4 +92,12 @@ public class CalculatingService {
     private BigDecimal convertGravity(BigDecimal gravity) {
         return BigDecimal.valueOf(260).divide(BigDecimal.valueOf(260).subtract(gravity), 3, RoundingMode.HALF_DOWN);
     }
+
+    public double calculatePrimingSugar (BigDecimal carbonDioxide, BigDecimal amount, BigDecimal temperature){
+        BigDecimal correctedTemp = temperature.multiply(BigDecimal.valueOf(1.8)).add(BigDecimal.valueOf(32));
+        return BigDecimal.valueOf(15.195).multiply(amount.multiply(BigDecimal.valueOf(0.26417)))
+                .multiply(carbonDioxide.subtract(BigDecimal.valueOf(3.0378))
+                .add(BigDecimal.valueOf(5.0062).multiply(BigDecimal.valueOf(Math.pow(10,-2))).multiply(correctedTemp))
+                .subtract(BigDecimal.valueOf(2.6555).multiply(BigDecimal.valueOf(Math.pow(10,-4))).multiply(correctedTemp.pow(2)))).setScale(1, RoundingMode.HALF_EVEN).doubleValue();
+    }
 }
