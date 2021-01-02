@@ -1,9 +1,17 @@
 package pl.brewers.supporter.brewerssupporter.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.ZonedDateTime;
@@ -20,13 +28,13 @@ public class Batch {
     private ZonedDateTime brewingDate;
     private int fermentationTime;
     private String notes;
-    private BigDecimal alcoholByVolume = calculateAlcohol();
+    private BigDecimal alcoholByVolume;
 
-    private BigDecimal calculateAlcohol() {
+    @PrePersist
+    private void calculateAlcohol() {
         if (finalGravity != null && originalGravity != null) {
-            return originalGravity.subtract(finalGravity).divide(BigDecimal.valueOf(1.938), 2, RoundingMode.HALF_EVEN);
+            this.alcoholByVolume = originalGravity.subtract(finalGravity).divide(BigDecimal.valueOf(1.938), 2, RoundingMode.HALF_EVEN);
         }
-        return null;
     }
 
     private BigDecimal originalGravity;
